@@ -6,13 +6,20 @@ const express = require('express');
 const router  = express.Router();
 const db = require('../lib/mapqueries.js');
 
-module.exports = () => {
-  router.get("/", (req, res) => {
-    db.getAllMaps()
-      .then(data => {
-        const allmaps = data.rows;
-        res.render("all-maps", { allmaps });
-      });
-  });
-  return router;
-};
+
+router.get("/", (req, res) => {
+  db.getAllMaps()
+    .then(data => {
+      const allmaps = data.rows;
+      console.log("MAPS: ", allmaps);
+      res.json({allmaps});
+      // res.render("all-maps", { allmaps });
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+});
+console.log("ROUTER: ", router);
+module.exports = router;
