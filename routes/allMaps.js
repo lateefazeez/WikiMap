@@ -9,10 +9,8 @@ const db = require('../lib/mapqueries.js');
 
 router.get("/", (req, res) => {
   db.getAllMaps()
-    .then(data => {
-      const allmaps = data.rows;
-      console.log("MAPS: ", allmaps);
-      res.json({allmaps});
+    .then(allMaps => {
+      res.json({allMaps});
       // res.render("all-maps", { allmaps });
     })
     .catch(err => {

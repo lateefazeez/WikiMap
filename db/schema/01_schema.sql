@@ -1,5 +1,4 @@
 -- Drop and recreate Users table (Example)
-
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS favorites CASCADE;
 DROP TABLE IF EXISTS maps CASCADE;
@@ -25,9 +24,8 @@ CREATE TABLE maps (
 
 CREATE TABLE favorites (
   id SERIAL PRIMARY KEY NOT NULL,
-  user_id INTEGER REFERENCES users(id) DELETE ON CASCADE,
-  map_id INTEGER REFERENCES map(id) DELETE ON CASCADE
-
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  map_id INTEGER REFERENCES maps(id) ON DELETE CASCADE
 );
 
 CREATE TABLE layers (
@@ -47,5 +45,6 @@ CREATE TABLE pins (
   latitude REAL,
   layer_id INTEGER NOT NULL REFERENCES layers(id) ON DELETE CASCADE
 );
+
 
 
