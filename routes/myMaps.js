@@ -14,6 +14,7 @@ router.get("/", (req, res) => {
 
       const templateVars = { gallerymaps: myMaps };
 
+      console.log(templateVars)
       res.render("gallerypages", templateVars);
 
     })

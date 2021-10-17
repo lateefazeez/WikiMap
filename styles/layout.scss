@@ -8,11 +8,6 @@ html {
 }
 
 #mapid {
-<<<<<<< HEAD
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-=======
   height: 500px;
   width: 1000px;
  }
@@ -29,7 +24,6 @@ html {
     position: fixed;
     top: 100px;
     left: 5%;
-
 }
 
 .map-box {
@@ -38,8 +32,8 @@ html {
   align-content: space-between;
   justify-content: space-between;
   background-color: white;
-  height: 200px;
-  width: 200px;
+  height: 300px;
+  width: 300px;
   align-items: center;
   padding: 20px;
   margin-top: 15px;
@@ -85,5 +79,37 @@ html {
   border-radius: 5%;
   display: block;
   width: 150px;
->>>>>>> d2d05b18ee5331563b39eef8e170f32565521cec
+}
+
+
+.top-row {
+  display: flex;
+  top: 1px;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 2%;
+  padding-right: 2%;
+  position: fixed;
+  top: 1px;
+  left: 0;
+  width: 100%;
+}
+
+
+@media only screen and (min-width: 1300px) {
+
+  .gallery{
+    display: flex;
+      align-content: space-between;
+      justify-content: space-around;
+      flex-flow: row wrap;
+      background-color: lightgray;
+      width: 1170px;
+      height: auto;
+      position: fixed;
+      top: 100px;
+      align-items: center;
+
+  }
+
 }

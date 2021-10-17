@@ -13,7 +13,6 @@
     <script type="text/javascript" src="/scripts/app.js"></script>
     <script type="text/javascript" src="/scripts/getLocation.js"></script>
 
-    <script type="text/javascript" src="../scripts/gallery.js"></script>
 
     <link
       rel="stylesheet"
@@ -35,7 +34,7 @@
           <% for(let map in gallerymaps) { %>
           <div class="triple-box">
               <div class= "map-box">
-                <div class="map-pic"><%= gallerymaps[map]['thumbnail_image'] %></div>
+                <div class="map-pic"><img src="<%gallerymaps[map]['thumbnail_image']%>"></div>
                 <div class="map-name"><%= gallerymaps[map]['name'] %></div>
               </div>
           </div>
