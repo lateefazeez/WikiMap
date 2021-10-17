@@ -11,7 +11,11 @@ router.get("/", (req, res) => {
   const user_id = req.session.userId;
   db.getMyContributionMaps(user_id)
     .then(myContributed => {
-      res.json({ myContributed });
+
+      const templateVars = { gallerymaps: myContributed };
+
+      res.render("gallerypages", templateVars);
+
     })
     .catch(err => {
       res
