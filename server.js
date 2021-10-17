@@ -52,7 +52,7 @@ app.use("/api/my-favs", myFavoriteMaps);
 app.use("/api/my-contributions", myContributedMaps);
 app.use("/api/not-owned", mapsNotOwned);
 app.use("/api/map", currentMap);
-app.use("/api/create", createMapRouter);
+//app.use("/api/create", createMapRouter);
 
 app.use("/api/logout", logoutRoute);
 app.use("/api/login", loginRoute);

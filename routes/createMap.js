@@ -3,23 +3,23 @@ const router  = express.Router();
 const db = require('../lib/mapqueries.js');
 
 
-router.post("/", (req, res) => {
-  const name = req.body.name;
-  const userId = req.seesion.userId;
-  const description = req.body.description;
-  const latitude = getLocation().latitude;
-  const longitude = getLocation().longitude;
-  const image = "map_image";
+// router.post("/", (req, res) => {
+//   const name = req.body.name;
+//   const userId = req.seesion.userId;
+//   const description = req.body.description;
+//   const latitude = getLocation().latitude;
+//   const longitude = getLocation().longitude;
+//   const image = "map_image";
 
 
-  db.generateMap("name", "description", "userId", "image", latitude, longitude)
-    .then(data => console.log(data))
-    .catch(err => {
-      res
-        .status(500)
-        .json({ error: err.message });
-    });
-});
+//   db.generateMap("name", "description", "userId", "image", latitude, longitude)
+//     .then(data => console.log(data))
+//     .catch(err => {
+//       res
+//         .status(500)
+//         .json({ error: err.message });
+//     });
+// });
 
 const getLocation = () => {
   if (navigator.geolocation) {
