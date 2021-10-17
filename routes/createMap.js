@@ -12,7 +12,7 @@ router.post("/", (req, res) => {
   const image = "map_image";
 
 
-  db.saveToDatabase(name, userId, description, image, latitude, longitude)
+  db.generateMap("name", "description", "userId", "image", latitude, longitude)
     .then(data => console.log(data))
     .catch(err => {
       res
