@@ -34,28 +34,37 @@ app.use(cookieSession({
 }));
 
 // Separated Routes for each Resource
-// Note: Feel free to replace the example routes below with your own
 const allMapRoutes = require("./routes/allMaps");
 const myMapRoutes = require("./routes/myMaps");
-// const loginRoutes = require("./routes/login");
+const myFavoriteMaps = require("./routes/myFavorites");
+const myContributedMaps = require("./routes/myContributions");
+const mapsNotOwned = require("./routes/mapsNotOwned");
+const currentMap = require("./routes/getMap");
+
+const logoutRoute = require("./routes/logout");
+const loginRoute = require("./routes/login");
 
 // Mount all resource routes
-// Note: Feel free to replace the example routes below with your own
 app.use("/api/all-maps", allMapRoutes);
 app.use("/api/my-maps", myMapRoutes);
-// app.use("/api/login/:user_id", loginRoutes);
+app.use("/api/my-favs", myFavoriteMaps);
+app.use("/api/my-contributions", myContributedMaps);
+app.use("/api/not-owned", mapsNotOwned);
+app.use("/api/map/:id", currentMap);
 
-// Note: mount other resources here, using the same pattern above
+app.use("/api/logout", logoutRoute);
+app.use("/api/login/:id", loginRoute);
+
+
 
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
-
-
 app.get("/", (req, res) => {
   res.render("index");
 });
 
+// Home page
 app.get("/api/login/:id", (req, res) => {
   const userId = req.params.id;
   req.session.userId = userId;

@@ -1,5 +1,5 @@
 /*
- * This would be routes for the users favorite maps
+ * This would be routes for the maps not owned by thw current user
  */
 
 const express = require('express');
@@ -9,9 +9,9 @@ const db = require('../lib/mapqueries.js');
 
 router.get("/", (req, res) => {
   const user_id = req.session.userId;
-  db.getMyFavoriteMaps(user_id)
-    .then(myFavoriteMaps => {
-      res.json({ myFavoriteMaps });
+  db.getNotMyMaps(user_id)
+    .then(notMyMaps=> {
+      res.json({ notMyMaps });
     })
     .catch(err => {
       res

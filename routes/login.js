@@ -3,7 +3,7 @@ const router  = express.Router();
 
 
 router.get("/", (req, res) => {
-  const id = req.params.user_id;
+  const id = req.params.id;
   req.session.userId = id;
   res.redirect("/");
   // db.getUser(id)
