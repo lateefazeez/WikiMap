@@ -67,10 +67,13 @@ app.use("/api/login", loginRoute);
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  res.render("index");
+  const username = req.session.username;
+  const id = req.session.signinId;
+  res.render("index", {user: username, signinId: id});
 });
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
+
 

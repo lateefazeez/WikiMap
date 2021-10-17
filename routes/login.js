@@ -2,6 +2,11 @@ const express = require('express');
 const router  = express.Router();
 const db = require('../lib/userQueries');
 
+// const generateUserId = () => {
+//   return Math.round(Math.random() * 5);
+// };
+
+// const signinId = generateUserId();
 router.get("/:id", (req, res) => {
   const id = req.params.id;
   req.session.userId = id;
@@ -18,4 +23,5 @@ router.get("/:id", (req, res) => {
     });
 });
 module.exports = router;
+
 

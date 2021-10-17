@@ -21,8 +21,9 @@ router.post("/", (req, res) => {
     longitude,
   };
 
+  const username = req.session.username;
   db.generateMap(map)
-    .then(data => console.log(data))
+    .then(data => res.render("create-map", {user: username}))
     .catch(err => {
       res
         .status(500)
