@@ -1,5 +1,6 @@
 // load .env data into process.env
 require("dotenv").config();
+let cookieSession = require('cookie-session');
 
 // Web server config
 const PORT = process.env.PORT || 8080;
@@ -8,7 +9,6 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 
-const db = require("./lib/db");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -28,16 +28,22 @@ app.use(
 );
 
 app.use(express.static("public"));
+app.use(cookieSession({
+  name: 'session',
+  keys: ['user_id']
+}));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const allMapRoutes = require("./routes/allMaps");
 const myMapRoutes = require("./routes/myMaps");
+// const loginRoutes = require("./routes/login");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/all-maps", allMapRoutes);
 app.use("/api/my-maps", myMapRoutes);
+// app.use("/api/login/:user_id", loginRoutes);
 
 // Note: mount other resources here, using the same pattern above
 
@@ -48,6 +54,12 @@ app.use("/api/my-maps", myMapRoutes);
 
 app.get("/", (req, res) => {
   res.render("index");
+});
+
+app.get("/api/login/:id", (req, res) => {
+  const userId = req.params.id;
+  req.session.userId = userId;
+  res.redirect("/");
 });
 
 app.listen(PORT, () => {
