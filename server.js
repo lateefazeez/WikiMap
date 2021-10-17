@@ -8,6 +8,7 @@ const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
+const bodyParser = require("body-parser");
 
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
@@ -17,6 +18,8 @@ app.use(morgan("dev"));
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.use(
   "/styles",
@@ -30,7 +33,7 @@ app.use(
 app.use(express.static("public"));
 app.use(cookieSession({
   name: 'session',
-  keys: ['user_id']
+  keys: ['user_id', 'username']
 }));
 
 // Separated Routes for each Resource
@@ -53,6 +56,7 @@ app.use("/api/my-contributions", myContributedMaps);
 app.use("/api/not-owned", mapsNotOwned);
 app.use("/api/map", currentMap);
 app.use("/api/create", createMapRouter);
+app.use("/api/new-map", createMapRouter);
 
 app.use("/api/logout", logoutRoute);
 app.use("/api/login", loginRoute);
