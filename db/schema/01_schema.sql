@@ -18,7 +18,7 @@ CREATE TABLE maps (
   name VARCHAR(255) NOT NULL,
   description VARCHAR(255) NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  thumbnail_image VARCHAR(255) NOT NULL,
+  thumbnail_image VARCHAR(255),
   longitude REAL,
   latitude REAL
 );

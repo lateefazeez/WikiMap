@@ -19,5 +19,4 @@ router.get("/", (req, res) => {
         .json({ error: err.message });
     });
 });
-console.log("ROUTER: ", router);
 module.exports = router;

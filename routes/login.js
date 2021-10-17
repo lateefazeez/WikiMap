@@ -1,24 +1,21 @@
 const express = require('express');
 const router  = express.Router();
+const db = require('../lib/mapqueries.js');
 
-
-router.get("/", (req, res) => {
-  const id = req.params.user_id;
+router.get("/:id", (req, res) => {
+  const id = req.params.id;
   req.session.userId = id;
-  res.redirect("/");
-  // db.getUser(id)
-  //   .then(user => {
-  //     if (user.id === id) {
-  //       res.redirect("/", {username: user.name});
-  //     }
-  //   })
-  //   .catch(err => {
-  //     res
-  //       .status(500)
-  //       .json({ error: err.message });
-  //   });
-  console.log("ID :", id);
-  console.log("FROM LOGIN: ", req.session.userId);
+  db.getUserById(id)
+    .then(user => {
+      if (user.id === id) {
+        res.redirect("/", {username: user.name});
+      }
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
 });
 module.exports = router;
 
