@@ -7,9 +7,10 @@ const router  = express.Router();
 const db = require('../lib/mapqueries.js');
 
 
-router.get("/", (req, res) => {
+router.get("/:id", (req, res) => {
   const map_id = req.params.id;
-  db.getMap(map_id)
+  console.log(map_id);
+  db.getSingleMap(map_id)
     .then(currentMap => {
       res.json({currentMap});
       // res.render("all-maps", { allmaps });
@@ -21,3 +22,5 @@ router.get("/", (req, res) => {
     });
 });
 module.exports = router;
+
+

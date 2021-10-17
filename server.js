@@ -50,10 +50,10 @@ app.use("/api/my-maps", myMapRoutes);
 app.use("/api/my-favs", myFavoriteMaps);
 app.use("/api/my-contributions", myContributedMaps);
 app.use("/api/not-owned", mapsNotOwned);
-app.use("/api/map/:id", currentMap);
+app.use("/api/map", currentMap);
 
 app.use("/api/logout", logoutRoute);
-app.use("/api/login/:id", loginRoute);
+app.use("/api/login", loginRoute);
 
 
 
@@ -62,13 +62,6 @@ app.use("/api/login/:id", loginRoute);
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
   res.render("index");
-});
-
-// Home page
-app.get("/api/login/:id", (req, res) => {
-  const userId = req.params.id;
-  req.session.userId = userId;
-  res.redirect("/");
 });
 
 app.listen(PORT, () => {
