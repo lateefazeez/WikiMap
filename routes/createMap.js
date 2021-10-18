@@ -3,7 +3,8 @@ const router  = express.Router();
 const db = require('../lib/mapqueries.js');
 
 router.get("/", (req, res) => {
-  res.render("new-map");
+  const username = req.session.username;
+  res.render("new-map", {user: username});
 });
 
 router.post("/", (req, res) => {

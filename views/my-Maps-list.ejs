@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="/styles/main.css" type="text/css" />
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
     <link rel="stylesheet" href="/styles/nav-bar.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/my-maps.css" type="text/css" />
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
@@ -85,7 +86,32 @@
         <% } %>
       </nav>
     </header>
-    <main style="margin: 1em">
+    <div>
+      <% if (maps.length > 0) { %>
+      <div class="grid">
+        <% for (let map of maps) { %>
+        <article class="card map-item">
+          <div class="map__image">
+            <img
+              src="https://images.unsplash.com/photo-1553864250-05b20249ee0c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bWFwc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60"
+              alt=""
+            />
+          </div>
+          <div class="card__content">
+            <h4 class="map__title"><%= map.name %></h4>
+          </div>
+          <div class="card__actions">
+            <button class=".btn_view-map">View Map</button>
+          </div>
+        </article>
+        <% } %>
+      </div>
+      <% } else { %>
+      <h3>No map has been created by you</h3>
+      <h4>Start creating some maps</h4>
+      <% } %>
+    </div>
+    <!-- <main style="margin: 1em">
       <div>
         <h3>Create A New Map</h3>
         <form action="/api/create" method="POST">
@@ -105,6 +131,7 @@
           </div>
         </form>
       </div>
-    </main>
+    </main> -->
+    <!-- <div id="mapid"></div> -->
   </body>
 </html>
