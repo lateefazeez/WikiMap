@@ -14,21 +14,21 @@ router.get("/", (req, res) => {
     .then((userInfo) => {
 
       db.getUserContributionMaps(user_id)
-      .then((contribInfo) => {
+        .then((contribInfo) => {
 
-        db.getUserFavoriteMaps(user_id)
-        .then((favInfo) => {
+          db.getUserFavoriteMaps(user_id)
+            .then((favInfo) => {
 
-          const templateVars = {
-            userInfo: userInfo,
-            favs: favInfo,
-            contribs: contribInfo,
-            user: idUser,
-          };
+              const templateVars = {
+                userInfo: userInfo,
+                favs: favInfo,
+                contribs: contribInfo,
+                user: idUser,
+              };
 
-          res.render("user-profile", templateVars);
+              res.render("user-profile", templateVars);
+            });
         });
-      });
     })
     .catch((err) => {
       res.status(500).json({ error: err.message });

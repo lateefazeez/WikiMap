@@ -2,90 +2,12 @@
 <html lang="en">
   <head>
     <title>Not Owned</title>
-
-    <!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-      crossorigin="anonymous"
-    />
-
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/main.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/nav-bar.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/my-maps.css" type="text/css" />
-
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
-    <script type="text/javascript" src="/scripts/getLocation.js"></script>
-
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-      crossorigin=""
-    />
-    <script
-      src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-      crossorigin=""
-    ></script>
+    <%- include('partials/_head') %>
   </head>
 
   <body>
-    <header>
-      <nav class="navbar navbar-expand-md navbar-dark">
-        <div class="access-buttons">
-          <a class="navbar-brand" href="/">WikiMap</a>
-          <form class="form-inline mb-2" action="/api/create" method="GET">
-            <div class="form-group">
-              <button type="submit" class="btn btn-primary btn-create">
-                Create A New Map
-              </button>
-            </div>
-          </form>
-        </div>
-
-        <div class="navbar-nav">
-          <a class="nav-item nav-link" href="/api/all-maps">All Maps</a>
-          <a class="nav-item nav-link" href="/api/my-maps">May Maps</a>
-          <a class="nav-item nav-link" href="/api/my-favs">My Favorites</a>
-          <a class="nav-item nav-link" href="/api/my-contributions"
-            >My Collaborations</a
-          >
-          <a class="nav-item nav-link" href="/api/not-owned">Not Owned</a>
-        </div>
-        <% if (user) { %>
-        <form class="form-inline" action="/api/logout" method="POST">
-          <h5 class="navbar-brand nav-link"><%= user %>!</h5>
-          <div class="form-group mb-2">
-            <button type="submit" class="btn btn-danger">Logout</button>
-          </div>
-        </form>
-        <% } else { %>
-        <div class="access-buttons">
-          <form
-            class="form-inline"
-            action="/register"
-            method="GET"
-            style="margin: 1em"
-          >
-            <div class="form-group mb-2">
-              <button type="submit" class="btn btn-primary">Register</button>
-            </div>
-          </form>
-          <form class="form-inline mb-2" action="/api/login/2" method="GET">
-            <div class="form-group">
-              <button type="submit" class="btn btn-primary">Login</button>
-            </div>
-          </form>
-        </div>
-        <% } %>
-      </nav>
-    </header>
+    <%- include('partials/_form-modal') %>
+    <header><%- include('partials/_nav-bar') %></header>
     <div>
       <% if (maps.length > 0) { %>
       <div class="grid">
@@ -98,10 +20,10 @@
             />
           </div>
           <div class="card__content">
-            <h4 class="map__title"><%= map.name %></h4>
+            <h5 class="map__title"><%= map.name %></h5>
           </div>
           <div class="card__actions">
-            <h5 class="map__title"><%= map.name %></h5>
+            <button class="btn btn-primary">View Map</button>
           </div>
         </article>
         <% } %>
@@ -111,5 +33,6 @@
       <h4>Start creating some maps</h4>
       <% } %>
     </div>
+    <%- include('partials/_foot-scripts') %> <%- include('partials/_footer') %>
   </body>
 </html>
