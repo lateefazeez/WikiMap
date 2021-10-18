@@ -26,7 +26,10 @@
   </div>
   <% if (user) { %>
   <form class="form-inline" action="/logout" method="POST">
-    <h5 class="navbar-brand nav-link"><%= user %>!</h5>
+    <a href="/user/profile">
+      <h5 class="navbar-brand nav-link"><%= user %>!</h5>
+    </a>
+
     <div class="form-group mb-2">
       <button type="submit" class="btn btn-danger">Logout</button>
     </div>

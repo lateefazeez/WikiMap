@@ -65,7 +65,7 @@ app.use("/maps", createMapRouter);
 app.use("/logout", logoutRoute);
 app.use("/login", loginRoute);
 
-app.use("/profile", profileRoute);
+app.use("/user/profile", profileRoute);
 
 
 // Home page

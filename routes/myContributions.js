@@ -12,7 +12,7 @@ router.get("/", (req, res) => {
   const username = req.session.username;
   db.getMyContributionMaps(user_id)
     .then(myContributed => {
-      res.render("my-favs", {maps: myContributed, user: username});
+      res.render("my-collaborations", {maps: myContributed, user: username});
       // const templateVars = { gallerymaps: myContributed, user: username };
 
       // res.render("gallerypages", templateVars);
