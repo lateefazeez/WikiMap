@@ -1,5 +1,5 @@
-$(() => {
-  $('#newMapModalCenter').on('shown.bs.modal', function() {
-    $('#myInput').trigger('focus');
-  });
-});
+// $(() => {
+//   $('#newMapModalCenter').on('shown.bs.modal', function() {
+//     $('#myInput').trigger('focus');
+//   });
+// });
