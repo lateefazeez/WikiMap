@@ -11,7 +11,11 @@ router.get("/", (req, res) => {
   const user_id = req.session.userId;
   db.getMyFavoriteMaps(user_id)
     .then(myFavoriteMaps => {
-      res.json({ myFavoriteMaps });
+
+      const templateVars = { gallerymaps: myFavoriteMaps };
+
+      res.render("gallerypages", templateVars);
+
     })
     .catch(err => {
       res
