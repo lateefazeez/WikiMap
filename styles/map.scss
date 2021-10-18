@@ -1,0 +1,23 @@
+.side-bar__new-map {
+  width: 20%;
+  height: auto;
+  background-color: #c3b299;
+}
+
+.main_container {
+  padding: 2em;
+}
+.map-creator {
+  display: flex;
+  justify-content: space-around;
+}
+
+.search_bar {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.search_input {
+  padding: 0.5em;
+  width: 100%;
+}

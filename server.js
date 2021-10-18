@@ -58,6 +58,7 @@ app.use("/user/favorites", myFavoriteMaps);
 app.use("/user/contributions", myContributedMaps);
 app.use("/user/not", mapsNotOwned);
 app.use("/maps", currentMap);
+// app.use("/map", currentMap);
 app.use("/maps", createMapRouter);
 // app.use("/api/create-map", createMapRouter);
 

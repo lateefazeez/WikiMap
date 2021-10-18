@@ -8,10 +8,31 @@
 
   <body>
     <header><%- include('partials/_nav-bar') %></header>
-    <main class="map-creator" data-id="id">
-      <div></div>
-      <div class="side-bar__new-map"></div>
-      <div id="mapid"></div>
+
+    <main data-id="id">
+      <div class="main_container">
+        <div class="search_bar">
+          <form class="form-inline my-2 my-lg-0">
+            <input
+              class="form-control mr-sm-2 search_input"
+              type="search"
+              placeholder="Search A Location"
+              aria-label="Search "
+            />
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="map-creator">
+        <div class="side-bar__new-map">
+          <div class="side-bar__header">
+            <h3><%= mapName %></h3>
+          </div>
+        </div>
+        <div id="mapid"></div>
+      </div>
     </main>
 
     <%- include('partials/_foot-scripts') %> <%- include('partials/_footer') %>

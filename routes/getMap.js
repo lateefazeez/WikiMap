@@ -13,7 +13,7 @@ router.get("/:id", (req, res) => {
   db.getSingleMap(map_id)
     .then(currentMap => {
       console.log(currentMap);
-      res.render("map", { currentMap, user: username });
+      res.render("map", { mapName: currentMap[0].name, user: username });
     })
     .catch(err => {
       res

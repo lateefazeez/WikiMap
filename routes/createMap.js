@@ -22,7 +22,8 @@ router.post("/", (req, res) => {
   const username = req.session.username;
   db.generateMap(map)
     .then(data => {
-      res.redirect(`/maps/${data.id}`);
+      console.log(data[0]);
+      res.redirect(`/maps/${data[0].id}`);
     })
     .catch(err => {
       res
