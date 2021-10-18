@@ -3,12 +3,6 @@
 body,
 html {
   margin: 0;
-}
-
-#mapid {
-  // justify-content: center;
-  // align-items: center;
-  // min-height: 100vh;
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
@@ -17,19 +11,20 @@ html {
 #mapid {
   height: 500px;
   width: 1000px;
-}
+ }
 
-.gallery {
+
+ .gallery{
   display: flex;
-  align-content: space-between;
-  justify-content: space-around;
-  flex-flow: row wrap;
-  background-color: lightgray;
-  width: 90%;
-  height: auto;
-  position: fixed;
-  top: 100px;
-  left: 5%;
+    align-content: space-between;
+    justify-content: space-around;
+    flex-flow: row wrap;
+    background-color: lightgray;
+    width: 90%;
+    height: auto;
+    position: fixed;
+    top: 100px;
+    left: 5%;
 }
 
 .map-box {
@@ -46,9 +41,8 @@ html {
   margin-bottom: 15px;
 }
 
-.gallery::before,
-.gallery::after {
-  content: "";
+.gallery::before, .gallery::after {
+  content: '';
   width: 100%;
   order: 1;
 }
@@ -60,10 +54,11 @@ html {
 }
 
 .map-name {
-  font-family: fantasy;
+  font-family:fantasy;
 }
 
-.navbar-nav {
+
+.navbar-nav{
   display: flex;
   width: 100%;
   flex-direction: row;
@@ -75,9 +70,10 @@ html {
   text-align: center;
   padding-left: 5%;
   padding-right: 5%;
+
 }
 
-.nav-item {
+.nav-item{
   font-family: cursive;
   font-size: larger;
   align-items: center;
@@ -85,6 +81,7 @@ html {
   display: block;
   width: 150px;
 }
+
 
 .top-row {
   display: flex;
@@ -99,17 +96,21 @@ html {
   width: 100%;
 }
 
+
 @media only screen and (min-width: 1300px) {
-  .gallery {
+
+  .gallery{
     display: flex;
-    align-content: space-between;
-    justify-content: space-around;
-    flex-flow: row wrap;
-    background-color: lightgray;
-    width: 1170px;
-    height: auto;
-    position: fixed;
-    top: 100px;
-    align-items: center;
+      align-content: space-between;
+      justify-content: space-around;
+      flex-flow: row wrap;
+      background-color: lightgray;
+      width: 1170px;
+      height: auto;
+      position: fixed;
+      top: 100px;
+      align-items: center;
+
   }
+
 }

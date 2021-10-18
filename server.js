@@ -48,6 +48,8 @@ const createMapRouter = require("./routes/createMap");
 const logoutRoute = require("./routes/logout");
 const loginRoute = require("./routes/login");
 
+const profileRoute = require("./routes/profilePage");
+
 // Mount all resource routes
 app.use("/api/all-maps", allMapRoutes);
 app.use("/api/my-maps", myMapRoutes);
@@ -61,7 +63,7 @@ app.use("/api/new-map", createMapRouter);
 app.use("/api/logout", logoutRoute);
 app.use("/api/login", loginRoute);
 
-
+app.use("/api/profile", profileRoute);
 
 // Home page
 // Warning: avoid creating more routes in this file!
