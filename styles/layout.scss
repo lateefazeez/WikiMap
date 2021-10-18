@@ -3,14 +3,13 @@
 body,
 html {
   margin: 0 auto;
-  background-color: lightsteelblue;
+  background-color: lightgrey;
   max-width: 1240px;
 }
 
 #mapid {
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+  min-height: 70vh;
+  width: 70%;
   // display: flex;
   // flex-direction: column;
   // overflow-y: scroll;
@@ -21,18 +20,18 @@ html {
 //   width: 1000px;
 // }
 
-.gallery {
-  display: flex;
-  align-content: space-between;
-  justify-content: space-around;
-  flex-flow: row wrap;
-  background-color: lightsteelblue;
-  width: 90%;
-  height: auto;
-  margin-top: 5rem;
-  top: 10em;
-  left: 5%;
-}
+// .gallery {
+//   display: flex;
+//   align-content: space-between;
+//   justify-content: space-around;
+//   flex-flow: row wrap;
+//   background-color: lightsteelblue;
+//   width: 90%;
+//   height: auto;
+//   margin-top: 5rem;
+//   top: 10em;
+//   left: 5%;
+// }
 
 // .map-box {
 //   display: flex;

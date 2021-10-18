@@ -7,13 +7,13 @@ const router  = express.Router();
 const db = require('../lib/mapqueries.js');
 
 
-router.get("/:id", (req, res) => {
-  const map_name = mapName
+router.get("/map/:id", (req, res) => {
+  const map_name = mapName;
   console.log(map_name);
   db.getSingleMap(map_name)
     .then(currentMap => {
-      console.log(currentMap)
-      res.render("/", { currentMap });
+      console.log(currentMap);
+      res.render("map", { currentMap });
     })
     .catch(err => {
       res

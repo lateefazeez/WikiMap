@@ -51,19 +51,19 @@ const loginRoute = require("./routes/login");
 const profileRoute = require("./routes/profilePage");
 
 // Mount all resource routes
-app.use("/api/all-maps", allMapRoutes);
-app.use("/api/my-maps", myMapRoutes);
-app.use("/api/my-favs", myFavoriteMaps);
-app.use("/api/my-contributions", myContributedMaps);
-app.use("/api/not-owned", mapsNotOwned);
-app.use("/api/map", currentMap);
-app.use("/api/create", createMapRouter);
-app.use("/api/create-map", createMapRouter);
+app.use("/maps", allMapRoutes);
+app.use("/user/maps", myMapRoutes);
+app.use("/user/favorites", myFavoriteMaps);
+app.use("/user/contributions", myContributedMaps);
+app.use("/user/not", mapsNotOwned);
+app.use("/maps", currentMap);
+app.use("/maps", createMapRouter);
+// app.use("/api/create-map", createMapRouter);
 
-app.use("/api/logout", logoutRoute);
-app.use("/api/login", loginRoute);
+app.use("/logout", logoutRoute);
+app.use("/login", loginRoute);
 
-app.use("/api/profile", profileRoute);
+app.use("/profile", profileRoute);
 
 
 // Home page
