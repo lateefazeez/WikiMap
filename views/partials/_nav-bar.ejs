@@ -16,16 +16,16 @@
   </div>
 
   <div class="navbar-nav">
-    <a class="nav-item nav-link" href="/api/all-maps">All Maps</a>
-    <a class="nav-item nav-link" href="/api/my-maps">May Maps</a>
-    <a class="nav-item nav-link" href="/api/my-favs">My Favorites</a>
-    <a class="nav-item nav-link" href="/api/my-contributions"
+    <a class="nav-item nav-link" href="/maps">All Maps</a>
+    <a class="nav-item nav-link" href="/user/maps">May Maps</a>
+    <a class="nav-item nav-link" href="/user/favorites">My Favorites</a>
+    <a class="nav-item nav-link" href="/user/contributions"
       >My Collaborations</a
     >
-    <a class="nav-item nav-link" href="/api/not-owned">Not Owned</a>
+    <a class="nav-item nav-link" href="/user/not">Not Owned</a>
   </div>
   <% if (user) { %>
-  <form class="form-inline" action="/api/logout" method="POST">
+  <form class="form-inline" action="/logout" method="POST">
     <h5 class="navbar-brand nav-link"><%= user %>!</h5>
     <div class="form-group mb-2">
       <button type="submit" class="btn btn-danger">Logout</button>

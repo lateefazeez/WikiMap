@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="/styles/main.css" type="text/css" />
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
-
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
     <script type="text/javascript" src="/scripts/getLocation.js"></script>
@@ -33,17 +32,14 @@
     <div class="gallery">
       <% for(let map in gallerymaps) { %>
       <div class="triple-box">
-
-        <div class="map-box">
-
-          <div class="pic"><img
-            src="https://images.unsplash.com/photo-1553864250-05b20249ee0c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bWFwc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=60"/>
-           </div>
-          <div class="map-name"><%= gallerymaps[map]['name'] %></div>
-
-
+        <a class="map-box" href="/maps/<%= gallerymaps[map]['id'] %>">
+          <div class="pic">
+            <img
+              src="https://images.unsplash.com/photo-1553864250-05b20249ee0c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bWFwc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=60"
+            />
           </div>
-
+          <div class="map-name"><%= gallerymaps[map]['name'] %></div>
+        </a>
       </div>
       <% } %>
     </div>
