@@ -8,12 +8,12 @@ const db = require('../lib/mapqueries.js');
 
 
 router.get("/:id", (req, res) => {
-  const map_id = req.params.id;
-  console.log(map_id);
-  db.getSingleMap(map_id)
+  const map_name = mapName
+  console.log(map_name);
+  db.getSingleMap(map_name)
     .then(currentMap => {
-      res.json({currentMap});
-      // res.render("all-maps", { allmaps });
+      console.log(currentMap)
+      res.render("/", { currentMap });
     })
     .catch(err => {
       res
