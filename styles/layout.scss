@@ -48,6 +48,7 @@ html {
 //   margin-bottom: 15px;
 // }
 
+<<<<<<< HEAD
 // .gallery::before,
 // .gallery::after {
 //   content: "";
@@ -116,3 +117,78 @@ html {
 //     left: 5%;
 //   }
 // }
+=======
+.gallery::before, .gallery::after {
+  content: '';
+  width: 100%;
+  order: 1;
+}
+.map-box:nth-child(n + 4) {
+  order: 1;
+}
+.map-box:nth-child(n + 7) {
+  order: 2;
+}
+
+.map-name {
+  font-family:fantasy;
+}
+
+
+.navbar-nav{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  background-color: lightslategrey;
+  position: fixed;
+  top: 20px;
+  left: 0;
+  justify-content: space-between;
+  text-align: center;
+  padding-left: 5%;
+  padding-right: 5%;
+
+}
+
+.nav-item{
+  font-family: cursive;
+  font-size: larger;
+  align-items: center;
+  border-radius: 5%;
+  display: block;
+  width: 150px;
+}
+
+
+.top-row {
+  display: flex;
+  top: 1px;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 2%;
+  padding-right: 2%;
+  position: fixed;
+  top: 1px;
+  left: 0;
+  width: 100%;
+}
+
+
+@media only screen and (min-width: 1300px) {
+
+  .gallery{
+    display: flex;
+      align-content: space-between;
+      justify-content: space-around;
+      flex-flow: row wrap;
+      background-color: lightgray;
+      width: 1170px;
+      height: auto;
+      position: fixed;
+      top: 100px;
+      align-items: center;
+
+  }
+
+}
+>>>>>>> 0ae7499cfd2143f278902153e161e517440e1df4

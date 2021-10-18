@@ -1,0 +1,44 @@
+
+.user-bit {
+  padding-top: 20px;
+  margin: auto;
+  font-family: 'Rampart One', cursive;
+  font-size: 48px;
+}
+
+
+.table-box {
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+  justify-content: space-between;
+  margin-left: 20%;
+  margin-right: 20%;
+
+}
+
+
+.tab-head {
+  text-align: center;
+  font-weight: bolder;
+  font-size: xx-large;
+  font-family: 'Indie Flower', cursive;
+  background-color: rgb(48, 122, 196);
+
+}
+
+.tabrow {
+  text-align: center;
+  font-family: 'Indie Flower', cursive;
+  font-size: larger;
+  background-color: lightsteelblue;
+}
+
+
+.favs-table {
+  width: 300px;
+}
+
+.contribs-table {
+  width: 300px;
+}
