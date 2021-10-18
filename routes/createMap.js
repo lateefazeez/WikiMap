@@ -4,15 +4,15 @@ const db = require('../lib/mapqueries.js');
 
 router.get("/", (req, res) => {
   const username = req.session.username;
-  res.render("new-map", {user: username});
+  res.render("create-map", {user: username});
 });
 
 router.post("/", (req, res) => {
   const name = req.body.map_name;
-  const description = req.body.description;
+  const description = req.body.map_description;
   const latitude = 0;
   const longitude = 0;
-  const image = "https://ibb.co/0XbkmmH";
+  const image = "map_image";
 
   const map = {
     name,
@@ -24,7 +24,9 @@ router.post("/", (req, res) => {
 
   const username = req.session.username;
   db.generateMap(map)
-    .then(data => res.render("create-map", {user: username}))
+    .then(data => {
+      res.render("create-map", {user: username, mapName: data.name});
+    })
     .catch(err => {
       res
         .status(500)

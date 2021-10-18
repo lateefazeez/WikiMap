@@ -1,133 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <%- include('partials/_head') %>
     <title>Create Map</title>
-
-    <!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
-    />
-
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/main.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/nav-bar.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/my-maps.css" type="text/css" />
-
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
-    <script type="text/javascript" src="/scripts/getLocation.js"></script>
-    <script type="text/javascript" src="/scripts/getLocation.js"></script>
-
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-      crossorigin=""
-    />
-    <script
-      src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-      crossorigin=""
-    ></script>
   </head>
 
   <body>
-    <!-- Modal -->
-    <div
-      class="modal fade"
-      id="exampleModalCenter"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalCenterTitle"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">...</div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Close
-            </button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <header>
-      <nav class="navbar navbar-expand-md navbar-dark">
-        <div class="access-buttons">
-          <a class="navbar-brand" href="/">WikiMap</a>
-          <!-- <form class="form-inline mb-2" action="/api/create" method="GET"> -->
-          <!-- <div class="form-group"> -->
-          <button
-            type="button"
-            class="btn btn-primary"
-            data-toggle="modal"
-            data-target="#exampleModalCenter"
-          >
-            Launch demo modal
-          </button>
-          <!-- </div> -->
-          <!-- </form> -->
-        </div>
-
-        <div class="navbar-nav">
-          <a class="nav-item nav-link" href="/api/all-maps">All Maps</a>
-          <a class="nav-item nav-link" href="/api/my-maps">May Maps</a>
-          <a class="nav-item nav-link" href="/api/my-favs">My Favorites</a>
-          <a class="nav-item nav-link" href="/api/my-contributions"
-            >My Collaborations</a
-          >
-          <a class="nav-item nav-link" href="/api/not-owned">Not Owned</a>
-        </div>
-        <% if (user) { %>
-        <form class="form-inline" action="/api/logout" method="POST">
-          <h5 class="navbar-brand nav-link"><%= user %>!</h5>
-          <div class="form-group mb-2">
-            <button type="submit" class="btn btn-danger">Logout</button>
-          </div>
-        </form>
-        <% } else { %>
-        <div class="access-buttons">
-          <form
-            class="form-inline"
-            action="/register"
-            method="GET"
-            style="margin: 1em"
-          >
-            <div class="form-group mb-2">
-              <button type="submit" class="btn btn-primary">Register</button>
-            </div>
-          </form>
-          <form class="form-inline mb-2" action="/api/login/2" method="GET">
-            <div class="form-group">
-              <button type="submit" class="btn btn-primary">Login</button>
-            </div>
-          </form>
-        </div>
-        <% } %>
-      </nav>
-    </header>
+    <%- include('partials/_form-modal') %>
+    <header><%- include('partials/_nav-bar') %></header>
     <div>
       <% if (maps.length > 0) { %>
       <div class="grid">
@@ -153,20 +33,6 @@
       <h4>Start creating some maps</h4>
       <% } %>
     </div>
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"
-    ></script>
+    <%- include('partials/_foot-scripts') %> <%- include('partials/_footer') %>
   </body>
 </html>

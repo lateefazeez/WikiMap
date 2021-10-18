@@ -13,18 +13,18 @@ router.get("/", (req, res) => {
   db.getUserById(user_id)
     .then(userInfo=> {
 
- db.getUserContributionMaps(user_id)
-      .then(contribInfo => {
+      db.getUserContributionMaps(user_id)
+        .then(contribInfo => {
 
- db.getUserFavoriteMaps(user_id)
- .then(favInfo => {
+          db.getUserFavoriteMaps(user_id)
+            .then(favInfo => {
 
-  const templateVars = { userInfo: userInfo , favs: favInfo, contribs: contribInfo };
+              const templateVars = { userInfo: userInfo , favs: favInfo, contribs: contribInfo };
 
-  res.render("user-profile", templateVars);
- })
+              res.render("user-profile", templateVars);
+            });
 
-      })
+        });
 
     })
     .catch(err => {

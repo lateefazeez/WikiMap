@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-md navbar-dark">
+  <div class="access-buttons">
+    <a class="navbar-brand" href="/">WikiMap</a>
+    <!-- <form class="form-inline mb-2" action="/api/create" method="GET"> -->
+    <!-- <div class="form-group"> -->
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-toggle="modal"
+      data-target="#newMapForm"
+    >
+      Create A New Map
+    </button>
+    <!-- </div> -->
+    <!-- </form> -->
+  </div>
+
+  <div class="navbar-nav">
+    <a class="nav-item nav-link" href="/api/all-maps">All Maps</a>
+    <a class="nav-item nav-link" href="/api/my-maps">May Maps</a>
+    <a class="nav-item nav-link" href="/api/my-favs">My Favorites</a>
+    <a class="nav-item nav-link" href="/api/my-contributions"
+      >My Collaborations</a
+    >
+    <a class="nav-item nav-link" href="/api/not-owned">Not Owned</a>
+  </div>
+  <% if (user) { %>
+  <form class="form-inline" action="/api/logout" method="POST">
+    <h5 class="navbar-brand nav-link"><%= user %>!</h5>
+    <div class="form-group mb-2">
+      <button type="submit" class="btn btn-danger">Logout</button>
+    </div>
+  </form>
+  <% } else { %>
+  <div class="access-buttons">
+    <form
+      class="form-inline"
+      action="/register"
+      method="GET"
+      style="margin: 1em"
+    >
+      <div class="form-group mb-2">
+        <button type="submit" class="btn btn-primary">Register</button>
+      </div>
+    </form>
+    <form class="form-inline mb-2" action="/api/login/2" method="GET">
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Login</button>
+      </div>
+    </form>
+  </div>
+  <% } %>
+</nav>

@@ -58,7 +58,7 @@ app.use("/api/my-contributions", myContributedMaps);
 app.use("/api/not-owned", mapsNotOwned);
 app.use("/api/map", currentMap);
 app.use("/api/create", createMapRouter);
-app.use("/api/new-map", createMapRouter);
+app.use("/api/create-map", createMapRouter);
 
 app.use("/api/logout", logoutRoute);
 app.use("/api/login", loginRoute);
