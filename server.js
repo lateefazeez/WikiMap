@@ -50,6 +50,7 @@ const loginRoute = require("./routes/login");
 
 const profileRoute = require("./routes/profilePage");
 
+
 // Mount all resource routes
 app.use("/api/all-maps", allMapRoutes);
 app.use("/api/my-maps", myMapRoutes);
