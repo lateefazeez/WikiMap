@@ -9,13 +9,12 @@ const db = require('../lib/mapqueries.js');
 
 router.get("/", (req, res) => {
   const user_id = req.session.userId;
+  const username = req.session.username;
   db.getMyFavoriteMaps(user_id)
     .then(myFavoriteMaps => {
-
-      const templateVars = { gallerymaps: myFavoriteMaps };
-
-      res.render("gallerypages", templateVars);
-
+      res.render("my-favs", {maps: myFavoriteMaps, user: username});
+      // const templateVars = { gallerymaps: myFavoriteMaps };
+      // res.render("gallerypages", templateVars);
     })
     .catch(err => {
       res

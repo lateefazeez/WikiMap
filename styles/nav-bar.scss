@@ -9,6 +9,14 @@
 }
 
 .btn-primary {
+  background-color: white;
+  color: #247ba0;
+  border: 1px solid #247ba0;
+  margin-top: 0;
+}
+
+.btn:hover,
+.btn:active {
   outline: none;
   border: none;
   background-color: #247ba0;

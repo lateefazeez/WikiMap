@@ -21,6 +21,7 @@
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
     <script type="text/javascript" src="/scripts/getLocation.js"></script>
+    <script type="text/javascript" src="/scripts/new-map-form.js"></script>
 
     <link
       rel="stylesheet"
@@ -42,7 +43,12 @@
           <a class="navbar-brand" href="/">WikiMap</a>
           <form class="form-inline mb-2" action="/api/create" method="GET">
             <div class="form-group">
-              <button type="submit" class="btn btn-primary btn-create">
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-toggle="modal"
+                data-target="#exampleModalCenter"
+              >
                 Create A New Map
               </button>
             </div>
@@ -86,26 +92,67 @@
         <% } %>
       </nav>
     </header>
-    <main style="margin: 1em">
-      <!-- <div>
-        <h3>Create A New Map</h3>
-        <form action="/api/create" method="POST">
-          <div>
-            <h5 class="map__title"><%= map.name %></h5>
-            <input
-              type="text"
-              name="map_name"
-              style="width: 300px; margin: 1em"
+    <div>
+      <% if (maps.length > 0) { %>
+      <div class="grid">
+        <% for (let map of maps) { %>
+        <article class="card map-item">
+          <div class="map__image">
+            <img
+              src="https://images.unsplash.com/photo-1553864250-05b20249ee0c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bWFwc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60"
+              alt=""
             />
-            <label for="description">Description</label>
-            <textarea name="description" style="width: 300px; margin: 1em">
-            </textarea>
-            <div>
-              <button type="submit">Submit</button>
-            </div>
           </div>
-        </form>
-      </div> -->
-    </main>
+          <div class="card__content">
+            <h5 class="map__title"><%= map.name %></h5>
+          </div>
+          <div class="card__actions">
+            <button class="btn btn-primary">View Map</button>
+          </div>
+        </article>
+        <% } %>
+      </div>
+      <% } else { %>
+      <h3>No map has been created by you</h3>
+      <h4>Start creating some maps</h4>
+      <% } %>
+    </div>
+    <div
+      class="modal fade"
+      id="newMapModalCenter"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="newMapModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="newMapModalCenterTitle">
+              Create A Map
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">...</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button type="button" class="btn btn-primary">Create Map</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

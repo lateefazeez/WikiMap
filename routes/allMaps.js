@@ -7,12 +7,13 @@ const router  = express.Router();
 const db = require('../lib/mapqueries.js');
 
 router.get("/", (req, res) => {
+  const username = req.session.username;
   db.getAllMaps()
     .then(allMaps => {
+      res.render("all-maps", {maps: allMaps, user: username});
+      // const templateVars = { gallerymaps: allMaps };
 
-      const templateVars = { gallerymaps: allMaps };
-
-      res.render("gallerypages", templateVars);
+      // res.render("gallerypages", templateVars);
 
     })
     .catch(err => {

@@ -111,6 +111,7 @@
 
 .map__image img {
   width: 100%;
+  object-fit: fill;
 }
 
 .card__actions {
@@ -123,19 +124,19 @@
   margin: 0 0.25rem;
 }
 
-.btn_view-map {
-  font: inherit;
-  border: 1px solid #00695c;
-  color: #00695c;
-  background: white;
-  border-radius: 2rem;
-  cursor: pointer;
-  padding: 0.3rem 1rem;
-  outline: none;
-}
+@media only screen and (min-width: 1200px) {
+  // body {
+  //   display: flex;
+  //   justify-content: space-between;
+  //   max-width: 1420px;
+  //   margin: 0 auto;
+  // }
+  .grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: stretch;
 
-// .btn:hover,
-// .btn:active {
-//   background-color: #00695c;
-//   color: white;
-// }
+    margin: 0 auto;
+  }
+}

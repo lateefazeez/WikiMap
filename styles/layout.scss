@@ -2,114 +2,117 @@
 
 body,
 html {
-  margin: 0;
+  margin: 0 auto;
+  background-color: lightgrey;
+  max-width: 1240px;
 }
 
 #mapid {
-  // justify-content: center;
-  // align-items: center;
-  // min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  overflow-y: scroll;
-}
-
-#mapid {
-  height: 500px;
-  width: 1000px;
-}
-
-.gallery {
-  display: flex;
-  align-content: space-between;
-  justify-content: space-around;
-  flex-flow: row wrap;
-  background-color: lightgray;
-  width: 90%;
-  height: auto;
-  position: fixed;
-  top: 100px;
-  left: 5%;
-}
-
-.map-box {
-  display: flex;
-  flex-direction: column;
-  align-content: space-between;
-  justify-content: space-between;
-  background-color: white;
-  height: 300px;
-  width: 300px;
+  justify-content: center;
   align-items: center;
-  padding: 20px;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  min-height: 100vh;
+  // display: flex;
+  // flex-direction: column;
+  // overflow-y: scroll;
 }
 
-.gallery::before,
-.gallery::after {
-  content: "";
-  width: 100%;
-  order: 1;
-}
-.map-box:nth-child(n + 4) {
-  order: 1;
-}
-.map-box:nth-child(n + 7) {
-  order: 2;
-}
+// #mapid {
+//   height: 500px;
+//   width: 1000px;
+// }
 
-.map-name {
-  font-family: fantasy;
-}
+// .gallery {
+//   display: flex;
+//   align-content: space-between;
+//   justify-content: space-around;
+//   flex-flow: row wrap;
+//   background-color: lightgray;
+//   width: 90%;
+//   height: auto;
+//   margin-top: 5rem;
+//   top: 10em;
+//   left: 5%;
+// }
 
-.navbar-nav {
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-  background-color: lightslategrey;
-  position: fixed;
-  top: 20px;
-  left: 0;
-  justify-content: space-between;
-  text-align: center;
-  padding-left: 5%;
-  padding-right: 5%;
-}
+// .map-box {
+//   display: flex;
+//   flex-direction: column;
+//   align-content: space-between;
+//   justify-content: space-between;
+//   background-color: white;
+//   height: 300px;
+//   width: 300px;
+//   align-items: center;
+//   padding: 20px;
+//   margin-top: 15px;
+//   margin-bottom: 15px;
+// }
 
-.nav-item {
-  font-family: cursive;
-  font-size: larger;
-  align-items: center;
-  border-radius: 5%;
-  display: block;
-  width: 150px;
-}
+// .gallery::before,
+// .gallery::after {
+//   content: "";
+//   width: 100%;
+//   order: 1;
+// }
+// .map-box:nth-child(n + 4) {
+//   order: 1;
+// }
+// .map-box:nth-child(n + 7) {
+//   order: 2;
+// }
 
-.top-row {
-  display: flex;
-  top: 1px;
-  flex-direction: row;
-  justify-content: space-between;
-  padding-left: 2%;
-  padding-right: 2%;
-  position: fixed;
-  top: 1px;
-  left: 0;
-  width: 100%;
-}
+// .map-name {
+//   font-family: fantasy;
+// }
 
-@media only screen and (min-width: 1300px) {
-  .gallery {
-    display: flex;
-    align-content: space-between;
-    justify-content: space-around;
-    flex-flow: row wrap;
-    background-color: lightgray;
-    width: 1170px;
-    height: auto;
-    position: fixed;
-    top: 100px;
-    align-items: center;
-  }
-}
+// .navbar-nav {
+//   display: flex;
+//   width: 100%;
+//   flex-direction: row;
+//   background-color: lightslategrey;
+//   position: fixed;
+//   top: 20px;
+//   left: 0;
+//   justify-content: space-between;
+//   text-align: center;
+//   padding-left: 5%;
+//   padding-right: 5%;
+// }
+
+// .nav-item {
+//   font-family: cursive;
+//   font-size: larger;
+//   align-items: center;
+//   border-radius: 5%;
+//   display: block;
+//   width: 150px;
+// }
+
+// .top-row {
+//   display: flex;
+//   top: 1px;
+//   flex-direction: row;
+//   justify-content: space-between;
+//   padding-left: 2%;
+//   padding-right: 2%;
+//   position: fixed;
+//   top: 1px;
+//   left: 0;
+//   width: 100%;
+// }
+
+// @media only screen and (min-width: 1300px) {
+//   .gallery {
+//     display: flex;
+//     align-content: space-between;
+//     justify-content: space-around;
+//     flex-flow: row wrap;
+//     background-color: lightgray;
+//     width: 1170px;
+//     height: auto;
+
+//     top: 10em;
+//     align-items: center;
+//     left: 5%;
+//   }
+// }

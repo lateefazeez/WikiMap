@@ -1,5 +1,5 @@
 $(() => {
-  $('#myModal').on('shown.bs.modal', function() {
+  $('#newMapModalCenter').on('shown.bs.modal', function() {
     $('#myInput').trigger('focus');
   });
 });

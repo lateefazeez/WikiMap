@@ -9,12 +9,13 @@ const db = require('../lib/mapqueries.js');
 
 router.get("/", (req, res) => {
   const user_id = req.session.userId;
+  const username = req.session.username;
   db.getNotMyMaps(user_id)
     .then(notMyMaps=> {
+      res.render("not-owned", {maps: notMyMaps, user: username});
+      // const templateVars = { gallerymaps: notMyMaps };
 
-      const templateVars = { gallerymaps: notMyMaps };
-
-      res.render("gallerypages", templateVars);
+      // res.render("gallerypages", templateVars);
     })
     .catch(err => {
       res
