@@ -13,10 +13,12 @@ router.post("/", (req, res) => {
   const latitude = 0;
   const longitude = 0;
   const image = "map_image";
+  const user_id = req.session.userId;
 
   const map = {
     name,
     description,
+    user_id,
     image,
     latitude,
     longitude,
