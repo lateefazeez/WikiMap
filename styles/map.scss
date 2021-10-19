@@ -1,5 +1,5 @@
 .side-bar__new-map {
-  width: 20%;
+  width: 25%;
   height: auto;
   background-color: #c3b299;
   border-radius:  8px;
@@ -8,9 +8,11 @@
 .main_container {
   padding: 2em;
 }
+
 .map-creator {
   display: flex;
   justify-content: space-around;
+  margin-top: 0;
 }
 
 

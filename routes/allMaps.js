@@ -10,11 +10,11 @@ router.get("/", (req, res) => {
   const username = req.session.username;
   db.getAllMaps()
     .then(allMaps => {
-      // res.render("all-maps", {maps: allMaps, user: username});
-      const templateVars = { gallerymaps: allMaps, user: username};
+      res.render("all-maps", {maps: allMaps, user: username});
+      // const templateVars = { gallerymaps: allMaps, user: username};
 
-      // res.json(allMaps)
-      res.render("gallerypages", templateVars);
+      // // res.json(allMaps)
+      // res.render("gallerypages", templateVars);
 
     })
     .catch(err => {

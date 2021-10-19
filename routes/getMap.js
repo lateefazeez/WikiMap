@@ -7,6 +7,7 @@ const router = express.Router();
 const db = require("../lib/mapqueries.js");
 const dc = require("../lib/pinQueries.js");
 
+
 router.get("/:id", (req, res) => {
   const username = req.session.username;
   const map_id = req.params.id;
@@ -15,6 +16,7 @@ router.get("/:id", (req, res) => {
 
       dc.getPinsByMap(map_id)
         .then(pincollection => {
+
 
       res.render("map", { mapName: currentMap[0]['name'], user: username, pins: pincollection });
     })

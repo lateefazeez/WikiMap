@@ -5,6 +5,15 @@
     <title>Create Map</title>
 
     <%- include('partials/_head') %>
+       <head>
+        <link
+          rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          crossorigin=""
+        />
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   </head>
 
   <body>
@@ -13,14 +22,19 @@
     <main data-id="id">
       <div class="main_container">
         <div class="search_bar">
-          <form class="form-inline my-2 my-lg-0">
+          <div class="alert alert-danger" role="alert" id="empty-search">
+            Please enter a valid address to search!
+          </div>
+          <form class="form-inline my-2 my-lg-0" id="search-form">
             <input
               class="form-control mr-sm-2 search_input"
+              id="search-bar"
+              name="location"
               type="search"
               placeholder="Search A Location"
-              aria-label="Search "
+              aria-label="Search"
             />
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="button" id="search-button">
               Search
             </button>
           </form>
@@ -53,6 +67,16 @@
     </main>
 
     <%- include('partials/_foot-scripts') %> <%- include('partials/_footer') %>
-    <script type="text/javascript" src="/scripts/getMap.js"></script>
+
+      <script type="text/javascript" src="/scripts/addPin.js"></script>
+      <script type="text/javascript" src="/scripts/loadPins.js"></script>
+
+
+        <script
+          src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+          integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+          crossorigin=""
+        ></script>
   </body>
 </html>
+

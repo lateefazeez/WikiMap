@@ -1,8 +1,6 @@
 /*
  * This would be routes for user profile info
  */
-
-const bodyParser = require("body-parser");
 const express = require("express");
 const router = express.Router();
 const db = require("../lib/userqueries.js");
@@ -26,7 +24,7 @@ router.get("/", (req, res) => {
                 user: idUser,
               };
 
-              console.log(favInfo)
+              console.log(favInfo);
               res.render("user-profile", templateVars);
             });
         });
