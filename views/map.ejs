@@ -12,6 +12,8 @@
           integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
           crossorigin=""
         />
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   </head>
 
   <body>
@@ -41,17 +43,6 @@
       <div class="map-creator">
         <div class="side-bar__new-map">
           <div class="side-bar__header">
-
-            <!-- <h5><%= mapName[0]['name'] %></h5>
-          </div>
-          <h5>Pins</h5>
-          <div class="pins">
-            <% for(let pin in pins) { %>
-            <ul>
-              <h6><%= pins[pin]['title'] %></h6>
-            </ul>
-            <% } %>
-======= -->
             <div class="m-name"><%= mapName %></div>
 
             <table class="pins-table">
@@ -75,9 +66,9 @@
     </main>
 
     <%- include('partials/_foot-scripts') %> <%- include('partials/_footer') %>
-    <script type="text/javascript" src="/scripts/getMap.js"></script>
-      <script type="text/javascript" src="/scripts/addPin.js"></script>
 
+      <script type="text/javascript" src="/scripts/addPin.js"></script>
+      <script type="text/javascript" src="/scripts/loadPins.js"></script>
         <script
           src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
           integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
@@ -86,26 +77,3 @@
   </body>
 </html>
 
-<!-- <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Geocoding for Leaflet</title>
-  </head>
-  <body>
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <link
-          rel="stylesheet"
-          href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-          crossorigin=""
-        />
-      </head>
-
-      <body>
-        <div id="mapid"></div>
-      </body>
-    </html>
-  </body>
-</html> -->

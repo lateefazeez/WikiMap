@@ -11,9 +11,27 @@ html {
   min-height: 70vh;
   width: 70%;
   border: 5px solid grey;
-  // display: flex;
-  // flex-direction: column;
-  // overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
+#mapid {
+  height: 500px;
+  width: 1000px;
+}
+
+.gallery {
+  display: flex;
+  align-content: space-between;
+  justify-content: space-around;
+  flex-flow: row wrap;
+  background-color: lightsteelblue;
+  width: 90%;
+  height: auto;
+  margin-top: 5rem;
+  top: 10em;
+  left: 5%;
 }
 
 // #mapid {
