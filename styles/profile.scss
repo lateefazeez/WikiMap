@@ -1,7 +1,7 @@
 
 .user-bit {
   padding-top: 20px;
-  margin-left: 35%;
+  text-align: center;
   font-family: 'Rampart One', cursive;
   font-size: 48px;
 }
@@ -44,3 +44,62 @@
   width: 300px;
 }
 
+.contribs-table {
+  border-collapse:separate;
+  border:solid black 1px;
+  border-radius:6px;
+  -moz-border-radius:6px;
+  margin: auto;
+  width: 70%;
+  text-align: center;
+  margin-top: 5%;
+  margin-left: 5%;
+}
+
+td, th {
+  border-left:solid black 1px;
+  border-top:solid black 1px;
+
+
+}
+
+th {
+  border-top: none;
+  font-size: larger;
+
+}
+
+td:first-child, th:first-child {
+   border-left: none;
+
+}
+
+.favs-table {
+  border-collapse:separate;
+  border:solid black 1px;
+  border-radius:6px;
+  -moz-border-radius:6px;
+  margin: auto;
+  width: 70%;
+  text-align: center;
+  margin-top: 5%;
+  margin-right: 5%;
+}
+
+td, th {
+  border-left:solid black 1px;
+  border-top:solid black 1px;
+
+
+}
+
+th {
+  border-top: none;
+  font-size: larger;
+
+}
+
+td:first-child, th:first-child {
+   border-left: none;
+
+}

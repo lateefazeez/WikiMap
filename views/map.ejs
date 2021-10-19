@@ -15,7 +15,7 @@
   </head>
 
   <body>
-    <header><%- include('partials/_nav-bar') %></header>
+    <header><%- include('partials/_header') %></header>
 
     <main data-id="id">
       <div class="main_container">
@@ -41,7 +41,8 @@
       <div class="map-creator">
         <div class="side-bar__new-map">
           <div class="side-bar__header">
-            <h5><%= mapName[0]['name'] %></h5>
+
+            <!-- <h5><%= mapName[0]['name'] %></h5>
           </div>
           <h5>Pins</h5>
           <div class="pins">
@@ -50,6 +51,23 @@
               <h6><%= pins[pin]['title'] %></h6>
             </ul>
             <% } %>
+======= -->
+            <div class="m-name"><%= mapName %></div>
+
+            <table class="pins-table">
+              <thead class="tab-head">
+                <tr>
+                  <th scope="col">Pins</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for(let pin in pins) { %>
+                  <tr>
+                    <td class="map-name"><%= pins[pin]['title'] %></td>
+                  </tr>
+                <% } %>
+              </tbody>
+            </table>
           </div>
         </div>
         <div id="mapid"></div>

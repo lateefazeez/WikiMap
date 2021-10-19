@@ -61,23 +61,25 @@ html {
 //   order: 2;
 // }
 
-// .map-name {
-//   font-family: fantasy;
-// }
+.map-name {
+  font-family: fantasy;
+  font-size: x-large;
+  color: #000;
+}
 
-// .navbar-nav {
-//   display: flex;
-//   width: 100%;
-//   flex-direction: row;
-//   background-color: lightslategrey;
-//   position: fixed;
-//   top: 20px;
-//   left: 0;
-//   justify-content: space-between;
-//   text-align: center;
-//   padding-left: 5%;
-//   padding-right: 5%;
-// }
+.navbar-nav {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  background-color: lightslategrey;
+  position: relative;
+  top: 20px;
+  left: 0;
+  justify-content: space-between;
+  text-align: center;
+  padding-left: 5%;
+  padding-right: 5%;
+}
 
 // .nav-item {
 //   font-family: cursive;

@@ -44,7 +44,6 @@ const myContributedMaps = require("./routes/myContributions");
 const mapsNotOwned = require("./routes/mapsNotOwned");
 const currentMap = require("./routes/getMap");
 const createMapRouter = require("./routes/createMap");
-const getLocation = require("./routes/getLocation");
 
 const logoutRoute = require("./routes/logout");
 const loginRoute = require("./routes/login");
@@ -59,7 +58,6 @@ app.use("/user/favorites", myFavoriteMaps);
 app.use("/user/contributions", myContributedMaps);
 app.use("/user/not", mapsNotOwned);
 app.use("/maps", currentMap);
-app.use("/map", getLocation);
 app.use("/maps", createMapRouter);
 app.use("/api/create-map", createMapRouter);
 

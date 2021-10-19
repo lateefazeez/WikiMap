@@ -1,14 +1,57 @@
-<div class="top-row">
-  <div>WikiMap</div>
+<nav class="navbar navbar-expand-md navbar-dark">
+  <div class="access-buttons">
+    <a class="navbar-brand" href="/">WikiMap</a>
+    <!-- <form class="form-inline mb-2" action="/api/create" method="GET"> -->
+    <!-- <div class="form-group"> -->
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-toggle="modal"
+      data-target="#newMapForm"
+    >
+      Create A New Map
+    </button>
+    <!-- </div> -->
+    <!-- </form> -->
+  </div>
 
-  <div class="username">Logged in As: <%= user %></div>
-</div>
+  <div class="navbar-nav">
+    <a class="nav-item nav-link" href="/maps">All Maps</a>
+    <a class="nav-item nav-link" href="/user/maps">My Maps</a>
+    <a class="nav-item nav-link" href="/user/favorites">My Favorites</a>
+    <a class="nav-item nav-link" href="/user/contributions"
+      >My Collaborations</a
+    >
+    <a class="nav-item nav-link" href="/user/not">Not Owned</a>
+  </div>
+  <% if (user) { %>
+  <form class="form-inline" action="/logout" method="POST">
+    <a href="/user/profile">
+      <h5 class="navbar-brand nav-link"><%= user %>!</h5>
+    </a>
 
-<div class="navbar-nav">
-  <a class="nav-item" href="/user/profile">My Profile</a>
-  <a class="nav-item" href="/maps">All Maps</a>
-  <a class="nav-item" href="/user/maps">My Maps</a>
-  <a class="nav-item" href="/user/favorites">My Favorites</a>
-  <a class="nav-item" href="/user/contributions">My Contributions</a>
-  <a class="nav-item" href="/user/not">Explore</a>
-</div>
+    <div class="form-group mb-2">
+      <button type="submit" class="btn btn-danger">Logout</button>
+    </div>
+  </form>
+  <% } else { %>
+  <div class="access-buttons">
+    <form
+      class="form-inline"
+      action="/register"
+      method="GET"
+      style="margin: 1em"
+    >
+      <div class="form-group mb-2">
+        <button type="submit" class="btn btn-primary">Register</button>
+      </div>
+    </form>
+    <form class="form-inline mb-2" action="/login/2" method="GET">
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Login</button>
+      </div>
+    </form>
+  </div>
+  <% } %>
+  <%- include('_form-modal') %>
+</nav>

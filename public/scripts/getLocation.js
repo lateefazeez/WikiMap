@@ -25,10 +25,6 @@ $(() => {
       zoomOffset: -1,
       accessToken: 'pk.eyJ1IjoiZnJlZW0xMSIsImEiOiJja3V0M2kxdHk1bDVoMnduemZiems0ZjZyIn0.W0f8zYdfwwPgtXTgoWT3ig'
     }).addTo(mymap);
-
-    L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap)
-      .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-      .openPopup();
   };
   getLocation();
 
