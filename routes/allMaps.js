@@ -13,8 +13,8 @@ router.get("/", (req, res) => {
       // res.render("all-maps", {maps: allMaps, user: username});
       const templateVars = { gallerymaps: allMaps, user: username};
 
-      res.json(allMaps)
-      //res.render("gallerypages", templateVars);
+      // res.json(allMaps)
+      res.render("gallerypages", templateVars);
 
     })
     .catch(err => {

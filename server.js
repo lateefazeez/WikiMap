@@ -58,15 +58,16 @@ app.use("/user/favorites", myFavoriteMaps);
 app.use("/user/contributions", myContributedMaps);
 app.use("/user/not", mapsNotOwned);
 app.use("/maps", currentMap);
+app.use("/map", currentMap);
 app.use("/maps", createMapRouter);
-// app.use("/api/create-map", createMapRouter);
+app.use("/api/create-map", createMapRouter);
 
 app.use("/logout", logoutRoute);
 app.use("/login", loginRoute);
 
-app.use("/profile", profileRoute);
+app.use("/user/profile", profileRoute);
 
-app.use("/maps", pinCollection);
+//app.use("/maps", pinCollection);
 
 // Home page
 // Warning: avoid creating more routes in this file!
@@ -77,9 +78,9 @@ app.get("/", (req, res) => {
   res.render("index", {user: username, signinId: id});
 });
 
-app.get("/test", (req, res) =>{
-  return res.json({names: "matt"})
-});
+// app.get("/test", (req, res) =>{
+//   return res.json({names: "matt"})
+// });
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

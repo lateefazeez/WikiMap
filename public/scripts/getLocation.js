@@ -1,13 +1,15 @@
 
 $(() => {
-  let x = document.getElementById("demo");
+  //let x = document.getElementById("demo");
 
   const getLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
 
+      // id = navigator.geolocation.watchPosition(success[, error[, options]])
+
     } else {
-      x.innerHTML = "Geolocation is not supported by this browser.";
+     // x.innerHTML = "Geolocation is not supported by this browser.";
     }
   };
 
@@ -29,7 +31,7 @@ $(() => {
 
   };
   getLocation();
-  module.exports = getLocation;
+
 });
 
 
