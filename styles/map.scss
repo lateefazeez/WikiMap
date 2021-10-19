@@ -1,7 +1,9 @@
 .side-bar__new-map {
-  width: 20%;
+  width: 25%;
   height: auto;
   background-color: #c3b299;
+  border-radius: 0.3em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .main_container {
@@ -20,4 +22,16 @@
 .search_input {
   padding: 0.5em;
   width: 100%;
+}
+
+.side-bar__header {
+  margin-top: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #50514f;
+}
+
+.pins {
+  padding: 1em;
 }

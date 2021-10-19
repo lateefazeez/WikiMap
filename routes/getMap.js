@@ -12,7 +12,6 @@ router.get("/:id", (req, res) => {
   const map_id = req.params.id;
   db.getSingleMap(map_id)
     .then(currentMap => {
-      console.log(currentMap);
       res.render("map", { mapName: currentMap[0].name, user: username });
     })
     .catch(err => {
