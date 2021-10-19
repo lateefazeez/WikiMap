@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Create Map</title>
 
     <%- include('partials/_head') %>
+       <head>
+        <link
+          rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          crossorigin=""
+        />
   </head>
 
   <body>
@@ -12,14 +20,19 @@
     <main data-id="id">
       <div class="main_container">
         <div class="search_bar">
-          <form class="form-inline my-2 my-lg-0">
+          <div class="alert alert-danger" role="alert" id="empty-search">
+            Please enter a valid address to search!
+          </div>
+          <form class="form-inline my-2 my-lg-0" id="search-form">
             <input
               class="form-control mr-sm-2 search_input"
+              id="search-bar"
+              name="location"
               type="search"
               placeholder="Search A Location"
               aria-label="Search"
             />
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="button" id="search-button">
               Search
             </button>
           </form>
@@ -28,12 +41,15 @@
       <div class="map-creator">
         <div class="side-bar__new-map">
           <div class="side-bar__header">
-            <h5><%= mapName %></h5>
+            <h5><%= mapName[0]['name'] %></h5>
           </div>
+          <h5>Pins</h5>
           <div class="pins">
+            <% for(let pin in pins) { %>
             <ul>
-              <h6>Pin 1</h6>
+              <h6><%= pins[pin]['title'] %></h6>
             </ul>
+            <% } %>
           </div>
         </div>
         <div id="mapid"></div>
@@ -41,5 +57,37 @@
     </main>
 
     <%- include('partials/_foot-scripts') %> <%- include('partials/_footer') %>
+    <script type="text/javascript" src="/scripts/getMap.js"></script>
+      <script type="text/javascript" src="/scripts/addPin.js"></script>
+
+        <script
+          src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+          integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+          crossorigin=""
+        ></script>
   </body>
 </html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Geocoding for Leaflet</title>
+  </head>
+  <body>
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+          crossorigin=""
+        />
+      </head>
+
+      <body>
+        <div id="mapid"></div>
+      </body>
+    </html>
+  </body>
+</html> -->

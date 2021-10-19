@@ -1,13 +1,15 @@
 
 $(() => {
-  let x = document.getElementById("demo");
+  //let x = document.getElementById("demo");
 
   const getLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
 
+      // id = navigator.geolocation.watchPosition(success[, error[, options]])
+
     } else {
-      x.innerHTML = "Geolocation is not supported by this browser.";
+      // x.innerHTML = "Geolocation is not supported by this browser.";
     }
   };
 
@@ -24,9 +26,12 @@ $(() => {
       accessToken: 'pk.eyJ1IjoiZnJlZW0xMSIsImEiOiJja3V0M2kxdHk1bDVoMnduemZiems0ZjZyIn0.W0f8zYdfwwPgtXTgoWT3ig'
     }).addTo(mymap);
 
+    L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap)
+      .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+      .openPopup();
   };
   getLocation();
-  module.exports = getLocation;
+
 });
 
 

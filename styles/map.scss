@@ -9,9 +9,11 @@
 .main_container {
   padding: 2em;
 }
+
 .map-creator {
   display: flex;
   justify-content: space-around;
+  margin-top: 0;
 }
 
 .search_bar {
@@ -34,4 +36,9 @@
 
 .pins {
   padding: 1em;
+}
+
+#empty-search {
+  width: 25em;
+  visibility: hidden;
 }

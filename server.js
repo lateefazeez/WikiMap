@@ -44,12 +44,13 @@ const myContributedMaps = require("./routes/myContributions");
 const mapsNotOwned = require("./routes/mapsNotOwned");
 const currentMap = require("./routes/getMap");
 const createMapRouter = require("./routes/createMap");
+const getLocation = require("./routes/getLocation");
 
 const logoutRoute = require("./routes/logout");
 const loginRoute = require("./routes/login");
 
 const profileRoute = require("./routes/profilePage");
-
+const pinCollection = require("./routes/getPinsForMap");
 
 // Mount all resource routes
 app.use("/maps", allMapRoutes);
@@ -58,15 +59,16 @@ app.use("/user/favorites", myFavoriteMaps);
 app.use("/user/contributions", myContributedMaps);
 app.use("/user/not", mapsNotOwned);
 app.use("/maps", currentMap);
-// app.use("/map", currentMap);
+app.use("/map", getLocation);
 app.use("/maps", createMapRouter);
-// app.use("/api/create-map", createMapRouter);
+app.use("/api/create-map", createMapRouter);
 
 app.use("/logout", logoutRoute);
 app.use("/login", loginRoute);
 
 app.use("/user/profile", profileRoute);
 
+//app.use("/maps", pinCollection);
 
 // Home page
 // Warning: avoid creating more routes in this file!
@@ -76,6 +78,10 @@ app.get("/", (req, res) => {
   const id = req.session.signinId;
   res.render("index", {user: username, signinId: id});
 });
+
+// app.get("/test", (req, res) =>{
+//   return res.json({names: "matt"})
+// });
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

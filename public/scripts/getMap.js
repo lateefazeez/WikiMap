@@ -1,27 +1,22 @@
 
 
-// $(document).ready(function () {
+$(document).ready(function() {
+  $(".map-box").click(function(e) {
+    let map_name = $(this).find(".map-name").text();
+    //e.preventDefault();
 
-//      $('.map-box').click(function (e) {
-//       var mapName = $(this).find(".map-name").text();
+    //thisMapsId = db.getMapIdByname(map_id);
 
-//       //alert(mapName)
+    // console.log("map id", thisMapsId)
 
-//       return mapName
-
-
-//   });
-
-// });
-
-
-// $.post("/tweets", tweetData).done(function (result) {
-//   $.ajax("/tweets", { method: "GET" }).then(function (results) {
-//     let final = createTweetElement(results[results.length - 1]);
-//     $(".tweets").prepend(final);
-
-//     $(".textfld").val("");
-//     $(".counter").val(140);
-//   });
-// });
-
+    $.ajax({
+      type: "GET",
+      url: `/maps/${map_name}?map=${map_name}`,
+      // data: {map: map_name},
+      dataType: "json",
+      success: function(data) {
+        console.log(data);
+      },
+    });
+  });
+});

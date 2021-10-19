@@ -14,7 +14,7 @@ router.get("/:id", (req, res) => {
     .then(user => {
       console.log(user[0].name);
       req.session.username = user[0].name;
-      res.redirect("/api/my-maps");
+      res.redirect("/user/maps");
     })
     .catch(err => {
       res

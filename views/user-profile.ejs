@@ -2,6 +2,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/profile.css" type="text/css" />
     <title>Home Page</title>
     <%- include('partials/_head') %>
   </head>
@@ -20,10 +25,12 @@
         <% for(let i = 0; i<favs.length; i++) { %>
           <tr>
             <td class ="tabrow"><%= favs[i]['name'] %></td>
+
           </tr>
         <% } %>
       </tbody>
     </table>
+
 
 
     <table class="contribs-table">

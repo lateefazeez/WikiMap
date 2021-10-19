@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
     .then(myMaps => {
       res.render("my-maps-list", { maps: myMaps, user: username });
       // const templateVars = { gallerymaps: myMaps, user: username };
-      // console.log(templateVars);
+
       // res.render("gallerypages", templateVars);
 
     })
@@ -24,4 +24,8 @@ router.get("/", (req, res) => {
         .json({ error: err.message });
     });
 });
+
+
+
+
 module.exports = router;
