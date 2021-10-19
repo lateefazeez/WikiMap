@@ -26,6 +26,7 @@ router.get("/", (req, res) => {
                 user: idUser,
               };
 
+              console.log(favInfo)
               res.render("user-profile", templateVars);
             });
         });

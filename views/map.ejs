@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Create Map</title>
 
     <%- include('partials/_head') %>
@@ -10,10 +11,25 @@
     <header><%- include('partials/_nav-bar') %></header>
     <main class="map-creator" data-id="id">
       <div></div>
-      <div class="side-bar__new-map"></div>
-      <div id="mapid"></div>
+      <div class="side-bar__new-map">
+          <div id="mapid"></div>
+
+              <table class="pins-table">
+                <thead class="tab-head">
+                  <tr>
+                    <th scope="col">Pins</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+              </table>
+        </div>
+
+
     </main>
 
     <%- include('partials/_foot-scripts') %> <%- include('partials/_footer') %>
+    <script type="text/javascript" src="/scripts/getMap.js"></script>
   </body>
 </html>

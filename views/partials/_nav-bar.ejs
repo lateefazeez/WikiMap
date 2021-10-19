@@ -25,7 +25,7 @@
     <a class="nav-item nav-link" href="/user/not">Not Owned</a>
   </div>
   <% if (user) { %>
-  <form class="form-inline" action="/api/logout" method="POST">
+  <form class="form-inline" action="/logout" method="POST">
     <h5 class="navbar-brand nav-link"><%= user %>!</h5>
     <div class="form-group mb-2">
       <button type="submit" class="btn btn-danger">Logout</button>
@@ -43,7 +43,7 @@
         <button type="submit" class="btn btn-primary">Register</button>
       </div>
     </form>
-    <form class="form-inline mb-2" action="/api/login/2" method="GET">
+    <form class="form-inline mb-2" action="/login/2" method="GET">
       <div class="form-group">
         <button type="submit" class="btn btn-primary">Login</button>
       </div>

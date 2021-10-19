@@ -1,5 +1,5 @@
 /*
- * This would be routes for all maps
+ * This would be routes for pin on a given map
  */
 
 const express = require('express');
@@ -10,10 +10,10 @@ const db = require('../lib/mapqueries.js');
 router.get("/:id", (req, res) => {
   const username = req.session.username;
   const map_id = req.params.id;
-  db.getSingleMap(map_id)
-    .then(currentMap => {
-      console.log(currentMap);
-      res.render("map", { currentMap, user: username });
+  db.getPinsByMap(map_id)
+    .then(pinCollection => {
+      console.log(pinCollection);
+      res.render("map", { pinCollection, user: username });
     })
     .catch(err => {
       res
@@ -21,8 +21,4 @@ router.get("/:id", (req, res) => {
         .json({ error: err.message });
     });
 });
-
-
 module.exports = router;
-
-

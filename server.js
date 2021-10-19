@@ -49,7 +49,7 @@ const logoutRoute = require("./routes/logout");
 const loginRoute = require("./routes/login");
 
 const profileRoute = require("./routes/profilePage");
-
+const pinCollection = require("./routes/getPinsForMap");
 
 // Mount all resource routes
 app.use("/maps", allMapRoutes);
@@ -66,6 +66,7 @@ app.use("/login", loginRoute);
 
 app.use("/profile", profileRoute);
 
+app.use("/maps", pinCollection);
 
 // Home page
 // Warning: avoid creating more routes in this file!
@@ -74,6 +75,10 @@ app.get("/", (req, res) => {
   const username = req.session.username;
   const id = req.session.signinId;
   res.render("index", {user: username, signinId: id});
+});
+
+app.get("/test", (req, res) =>{
+  return res.json({names: "matt"})
 });
 
 app.listen(PORT, () => {
