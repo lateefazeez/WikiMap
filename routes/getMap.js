@@ -16,7 +16,7 @@ router.get("/:id", (req, res) => {
       dc.getPinsByMap(map_id)
         .then(pincollection => {
 
-      res.render("map", { mapName: currentMap[0].name, user: username, pins: pincollection });
+      res.render("map", { mapName: currentMap[0]['name'], user: username, pins: pincollection });
     })
   })
     .catch(err => {

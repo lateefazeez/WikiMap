@@ -2,6 +2,7 @@
   width: 20%;
   height: auto;
   background-color: #c3b299;
+  border-radius:  8px;
 }
 
 .main_container {
@@ -12,6 +13,11 @@
   justify-content: space-around;
 }
 
+
+.leaflet-container{
+  border-radius:  8px;
+}
+
 .search_bar {
   display: flex;
   justify-content: flex-end;
@@ -20,4 +26,41 @@
 .search_input {
   padding: 0.5em;
   width: 100%;
+}
+
+.m-name {
+  text-align: center;
+  margin-top: 10%;
+  font-size: xx-large;
+  font-family: 'Indie Flower', cursive;
+}
+
+.pins-table {
+  border-collapse:separate;
+  border:solid black 1px;
+  border-radius:6px;
+  -moz-border-radius:6px;
+  margin: auto;
+  width: 70%;
+  text-align: center;
+  margin-top: 10%;
+}
+
+td, th {
+  border-left:solid black 1px;
+  border-top:solid black 1px;
+
+
+}
+
+th {
+  background-color: dark brown;
+  border-top: none;
+  font-size: larger;
+
+}
+
+td:first-child, th:first-child {
+   border-left: none;
+
 }

@@ -39,12 +39,19 @@ html {
   align-content: space-between;
   justify-content: space-between;
   background-color: white;
-  height: 300px;
+  height: 250px;
   width: 300px;
   align-items: center;
-  padding: 20px;
-  margin-top: 15px;
+
+  margin-top: 5px;
   margin-bottom: 15px;
+  border-radius: 10px;
+}
+
+
+
+img{
+  border-radius: 10px 10px 0px 0px;
 }
 
 .gallery::before,
@@ -62,6 +69,8 @@ html {
 
 .map-name {
   font-family: fantasy;
+  font-size: x-large;
+  color: #000;
 }
 
 .navbar-nav {
