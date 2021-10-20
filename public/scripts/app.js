@@ -1,6 +1,7 @@
 $(() => {
   let map;
   const drawPins = (arr, map) => {
+    const pin = $("#pin-list").append();
 
     for (const pinData of arr) {
       L.marker([pinData.latitude, pinData.longitude]).addTo(map)
@@ -135,6 +136,13 @@ $(() => {
         console.log(data);
       })
       .catch(error => console.log(error));
+  };
+
+  const showPin = (myArr) => {
+    $.ajax(`/api/maps/${myArr[2]}`, { method: "GET" })
+      .then(function(results) {
+
+      });
   };
 
 
