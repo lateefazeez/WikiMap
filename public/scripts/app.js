@@ -7,8 +7,25 @@ $(() => {
       L.marker([pinData.latitude, pinData.longitude]).addTo(map)
         .bindPopup(`${pinData.title}`)
         .openPopup();
+
     }
   };
+
+  const drawTable = (pinData) => {
+
+    let $pin = createTableElement(pinData);
+
+    console.log("meeeee:", $pin, pinData);
+    $(".pintab").append($pin);
+
+  };
+  const createTableElement = function(object) {
+    return $(`<tr>
+                    <td class="map-name">${object}</td>
+                  </tr>`);
+  };
+
+
 
   const getLocation = () => {
     if (navigator.geolocation) {
@@ -122,20 +139,48 @@ $(() => {
       });
   };
 
+  // var table = $("table tbody");
+  //   table.find('tr').each(function (i) {
+  //       var $tds = $(this).find('td'),
+  //           productId = $tds.eq(0).text(),
+
+  const validatePin = (pin) => {
+    console.log("PIN: ", pin);
+    const $table = $("table tbody");
+    // console.log("TABLE: ", $table.innerHTML);
+
+    $table.find('tr').each(function(i) {
+      let result;
+      const $tds = $(this).find('td'),
+        name = $tds.eq(0).text();
+      // console.log("PIN: ", pin, "NAME: ", name);
+      if (name === pin) {
+        console.log("PIN: ", pin, "NAME: ", name);
+        return true;
+      }
+    });
+    return false;
+  };
+
   const savePin = (lat, long, name,) => {
     let pathname = window.location.pathname;
     const mapArr = pathname.split("/");
     const mapId = mapArr[2];
     console.log("MAP ID", mapId);
-    $.ajax({
-      url: "/map/pins",
-      method: "POST",
-      data: {lat, long, name, mapId}
-    })
-      .then(data => {
-        console.log(data);
+    console.log("VALI: ", validatePin(name));
+    if (validatePin(name) == false) {
+      drawTable(name);
+      $.ajax({
+        url: "/map/pins",
+        method: "POST",
+        data: {lat, long, name, mapId}
       })
-      .catch(error => console.log(error));
+        .then(data => {
+          console.log(data);
+        })
+        .catch(error => console.log(error));
+    }
+
   };
 
   const showPin = (myArr) => {

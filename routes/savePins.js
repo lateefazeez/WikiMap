@@ -25,6 +25,21 @@ router.post("/", (req, res) => {
     layer_id
   };
 
+  // router.get("/:id", (req, res) => {
+  //   const username = req.session.username;
+  //   const map_id = req.params.id;
+
+  //   db.getPinsByMap(map_id)
+  //     .then(pincollection => {
+  //       res.json(pincollection);
+  //     })
+  //     .catch(err => {
+  //       res
+  //         .status(500)
+  //         .json({ error: err.message });
+  //     });
+  // });
+
   db.generatePin(map)
     .then(data => {
       console.log(data[0]);
