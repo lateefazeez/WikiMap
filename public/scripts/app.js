@@ -154,16 +154,17 @@ $(() => {
     // console.log("TABLE: ", $table.innerHTML);
 
     $table.find('tr').each(function(i) {
-      let result;
+
       const $tds = $(this).find('td'),
         name = $tds.eq(0).text();
-      // console.log("PIN: ", pin, "NAME: ", name);
+         console.log("PIN: ", pin, "NAME: ", name);
       if (name === pin) {
-        console.log("PIN: ", pin, "NAME: ", name);
-        return true;
+        console.log("match!");
+        return "A"
       }
+      return "B"
     });
-    return false;
+
   };
 
   const savePin = (lat, long, name,) => {
@@ -171,8 +172,11 @@ $(() => {
     const mapArr = pathname.split("/");
     const mapId = mapArr[2];
     console.log("MAP ID", mapId);
-    console.log("VALI: ", validatePin(name));
-    if (validatePin(name) == false) {
+
+    let heyyou = validatePin(name)
+    console.log(heyyou)
+
+    if (heyyou === "B") {
       drawTable(name);
       $.ajax({
         url: "/map/pins",
