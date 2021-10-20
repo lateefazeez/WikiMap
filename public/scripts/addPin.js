@@ -3,23 +3,15 @@ $(() => {
   const drawPins = (arr, map) => {
 
     for (const pinData of arr) {
-
-      console.log(pinData);
-      console.log(pinData.latitude, pinData.longitude);
-
       L.marker([pinData.latitude, pinData.longitude]).addTo(map)
-        .bindPopup(`im ${pinData.title}`)
+        .bindPopup(`${pinData.title}`)
         .openPopup();
-
-      console.log("map", map);
-
     }
   };
 
   const getLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
-
     }
   };
 
@@ -46,10 +38,7 @@ $(() => {
 
     $.ajax(`/api/maps/${myArr[2]}`, { method: "GET" })
       .then(function(results) {
-
-        console.log(results);
         drawPins(results, map);
-
       });
 
   };
@@ -95,7 +84,8 @@ $(() => {
           .then(function(data) {
             let coordinates = data.features[0].geometry.coordinates;
             coords.push([coordinates[1], coordinates[0]]);
-            pinName = data.features[0].properties.label;
+            let pinNameArray = data.features[0].properties.label.split(" ");
+            pinName = `${pinNameArray[0]} ${pinNameArray[1]} `;
             //and if it is success drawing map and marker
             addNewMarker(data);
             $("#search-bar").val("");
@@ -129,11 +119,27 @@ $(() => {
       })
       .on('click', function(event) {
         let marker = event.target;
-        console.log("clicked");
+        let position = marker.getLatLng();
+        marker.setLatLng(new L.LatLng(position.lat, position.lng),{draggable:'true'});
+        savePin(position.lat, position.lng, pinName);
       });
   };
 
-
+  const savePin = (lat, long, name,) => {
+    let pathname = window.location.pathname;
+    const mapArr = pathname.split("/");
+    const mapId = mapArr[2];
+    console.log("MAP ID", mapId);
+    $.ajax({
+      url: "/map/pins",
+      method: "POST",
+      data: {lat, long, name, mapId}
+    })
+      .then(data => {
+        console.log(data);
+      })
+      .catch(error => console.log(error));
+  };
 
 
 

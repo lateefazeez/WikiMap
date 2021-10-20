@@ -44,6 +44,7 @@ const myContributedMaps = require("./routes/myContributions");
 const mapsNotOwned = require("./routes/mapsNotOwned");
 const currentMap = require("./routes/getMap");
 const createMapRouter = require("./routes/createMap");
+const savePin = require("./routes/savePins");
 
 const logoutRoute = require("./routes/logout");
 const loginRoute = require("./routes/login");
@@ -60,6 +61,7 @@ app.use("/user/not", mapsNotOwned);
 app.use("/maps", currentMap);
 app.use("/maps", createMapRouter);
 app.use("/api/create-map", createMapRouter);
+app.use("/map/pins", savePin);
 
 app.use("/api/maps", pinCollection);
 
