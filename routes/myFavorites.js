@@ -12,9 +12,8 @@ router.get("/", (req, res) => {
   const username = req.session.username;
   db.getMyFavoriteMaps(user_id)
     .then(myFavoriteMaps => {
-      res.render("my-favs", {maps: myFavoriteMaps, user: username});
-      // const templateVars = { gallerymaps: myFavoriteMaps, user: username};
-      // res.render("gallerypages", templateVars);
+      const templateVars = { gallerymaps: myFavoriteMaps, user: username};
+      res.render("gallerypages", templateVars);
     })
     .catch(err => {
       res

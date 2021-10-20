@@ -53,7 +53,7 @@ const profileRoute = require("./routes/profilePage");
 const pinCollection = require("./routes/JSONgetPins");
 
 // Mount all resource routes
-app.use("/maps", allMapRoutes);
+app.use("/", allMapRoutes);
 app.use("/user/maps", myMapRoutes);
 app.use("/user/favorites", myFavoriteMaps);
 app.use("/user/contributions", myContributedMaps);
@@ -78,7 +78,7 @@ app.use("/user/profile", profileRoute);
 app.get("/", (req, res) => {
   const username = req.session.username;
   const id = req.session.signinId;
-  res.render("index", {user: username, signinId: id});
+  res.render("gallerypages", {user: username, signinId: id});
 });
 
 // app.get("/test", (req, res) =>{

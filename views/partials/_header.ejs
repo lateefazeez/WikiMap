@@ -3,6 +3,8 @@
     <a class="navbar-brand" href="/">WikiMap</a>
     <!-- <form class="form-inline mb-2" action="/api/create" method="GET"> -->
     <!-- <div class="form-group"> -->
+
+    <% if (user) { %>
     <button
       type="button"
       class="btn btn-primary"
@@ -11,12 +13,13 @@
     >
       Create A New Map
     </button>
+    <% } %>
     <!-- </div> -->
     <!-- </form> -->
   </div>
 
   <div class="navbar-nav">
-    <a class="nav-item nav-link" href="/maps">All Maps</a>
+    <a class="nav-item nav-link" href="/">All Maps</a>
     <a class="nav-item nav-link" href="/user/maps">My Maps</a>
     <a class="nav-item nav-link" href="/user/favorites">My Favorites</a>
     <a class="nav-item nav-link" href="/user/contributions"
@@ -52,6 +55,5 @@
       </div>
     </form>
   </div>
-  <% } %>
-  <%- include('_form-modal') %>
+  <% } %> <%- include('_form-modal') %>
 </nav>

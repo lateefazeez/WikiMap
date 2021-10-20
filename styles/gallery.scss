@@ -1,0 +1,74 @@
+
+.gallery {
+  display: flex;
+  align-content: space-between;
+  justify-content: space-around;
+  flex-flow: row wrap;
+  width: 90%;
+  height: auto;
+  margin-top: 5rem;
+  top: 10em;
+  left: 5%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.gallery::before,
+.gallery::after {
+  content: "";
+  width: 100%;
+  order: 1;
+}
+
+.map-box {
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  justify-content: space-between;
+  background-color: white;
+  height: 250px;
+  width: 300px;
+  align-items: center;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+
+}
+
+.map-box:hover {
+  box-shadow: 10px 10px rgb(184, 184, 185);
+}
+
+img {
+  border-radius: 10px 10px 0px 0px
+}
+
+.map-box:nth-child(n + 4) {
+  order: 1;
+}
+.map-box:nth-child(n + 7) {
+  order: 2;
+}
+
+.map-name {
+  font-family: fantasy;
+  font-size: x-large;
+  color: #000;
+  padding-top: 10px;
+}
+
+@media only screen and (min-width: 1300px) {
+  .gallery {
+    display: flex;
+    align-content: space-between;
+    justify-content: space-around;
+    flex-flow: row wrap;
+    background-color: lightgray;
+    width: 1170px;
+    height: auto;
+
+    top: 10em;
+    align-items: center;
+    left: 5%;
+  }
+}

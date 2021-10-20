@@ -9,10 +9,7 @@ router.get("/:id", (req, res) => {
 
   db.getPinsByMap(map_id)
     .then(pincollection => {
-
-
       res.json(pincollection);
-
     })
     .catch(err => {
       res

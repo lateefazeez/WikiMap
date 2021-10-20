@@ -12,11 +12,8 @@ router.get("/", (req, res) => {
   const username = req.session.username;
   db.getMyMaps(user_id)
     .then(myMaps => {
-      res.render("my-maps-list", { maps: myMaps, user: username });
-      // const templateVars = { gallerymaps: myMaps, user: username };
-
-      // res.render("gallerypages", templateVars);
-
+      const templateVars = { gallerymaps: myMaps, user: username };
+      res.render("gallerypages", templateVars);
     })
     .catch(err => {
       res
