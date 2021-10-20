@@ -11,10 +11,10 @@ router.get("/", (req, res) => {
   db.getAllMaps()
     .then(allMaps => {
       res.render("all-maps", {maps: allMaps, user: username});
-      // const templateVars = { gallerymaps: allMaps, user: username};
+      const templateVars = { gallerymaps: allMaps, user: username};
 
-      // // res.json(allMaps)
-      // res.render("gallerypages", templateVars);
+      // res.json(allMaps)
+      res.render("gallerypages", templateVars);
 
     })
     .catch(err => {

@@ -12,10 +12,10 @@ router.get("/", (req, res) => {
   const username = req.session.username;
   db.getNotMyMaps(user_id)
     .then(notMyMaps=> {
-      res.render("not-owned", {maps: notMyMaps, user: username});
-      // const templateVars = { gallerymaps: notMyMaps, user: username };
+      // res.render("not-owned", {maps: notMyMaps, user: username});
+      const templateVars = { gallerymaps: notMyMaps, user: username };
 
-      // res.render("gallerypages", templateVars);
+      res.render("gallerypages", templateVars);
     })
     .catch(err => {
       res
