@@ -115,6 +115,7 @@ $(() => {
 
   ///sending request
   const addNewMarker = (response) => {
+
     let coordinates = response.features[0].geometry.coordinates; // The coordintaes are in a [<lng>, <lat>] format/
     let latLng = L.latLng([coordinates[1], coordinates[0]]);
     // map.setView(latLng, 13);
@@ -131,11 +132,14 @@ $(() => {
         map.panTo(new L.LatLng(position.lat, position.lng));
       })
       .on('click', function(event) {
+
         let marker = event.target;
         let position = marker.getLatLng();
         marker.setLatLng(new L.LatLng(position.lat, position.lng),{draggable:'true'});
         savePin(position.lat, position.lng, pinName);
+
       });
+
   };
 
   const savePin = (lat, long, name,) => {
