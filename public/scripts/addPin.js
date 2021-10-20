@@ -1,5 +1,60 @@
 $(() => {
   let map;
+  const drawPins = (arr, map) => {
+
+    for (const pinData of arr) {
+
+      console.log(pinData);
+      console.log(pinData.latitude, pinData.longitude);
+
+      L.marker([pinData.latitude, pinData.longitude]).addTo(map)
+        .bindPopup(`im ${pinData.title}`)
+        .openPopup();
+
+      console.log("map", map);
+
+    }
+  };
+
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+
+    }
+  };
+
+  const showPosition = (position) => {
+
+    map = L.map('mapid').setView([position.coords.latitude, position.coords.longitude], 13);
+
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      maxZoom: 18,
+      id: 'mapbox/streets-v11',
+      tileSize: 512,
+      zoomOffset: -1,
+      accessToken: 'pk.eyJ1IjoiZnJlZW0xMSIsImEiOiJja3V0M2kxdHk1bDVoMnduemZiems0ZjZyIn0.W0f8zYdfwwPgtXTgoWT3ig'
+    }).addTo(map);
+
+    L.marker([position.coords.latitude, position.coords.longitude]).addTo(map)
+      .bindPopup('im home')
+      .openPopup();
+
+    let pathname = window.location.pathname;
+
+    const myArr = pathname.split("/");
+
+    $.ajax(`/api/maps/${myArr[2]}`, { method: "GET" })
+      .then(function(results) {
+
+        console.log(results);
+        drawPins(results, map);
+
+      });
+
+  };
+  getLocation();
+
   let coords = [];
   let pinName;
   const drawMarker = (latLng) => {
@@ -30,7 +85,7 @@ $(() => {
   // let locationName = "saddledome calgary";
   const $addresses = [];
   const showLocations = () => {
-    drawMarker([51.1646246, -113.9384915]);
+    // drawMarker([51.1646246, -113.9384915]);
     $("#search-button").on("click", function() {
       const $address = $("#search-bar").val();
       $addresses.push($address);
