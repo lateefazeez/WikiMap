@@ -6,8 +6,25 @@ $(() => {
       L.marker([pinData.latitude, pinData.longitude]).addTo(map)
         .bindPopup(`${pinData.title}`)
         .openPopup();
+
     }
   };
+
+  const drawTable = (pinData) => {
+
+        let $pin = createTableElement(pinData)
+
+        console.log("meeeee:", $pin, pinData)
+        $(".pintab").append($pin);
+
+  };
+  const createTableElement = function (object) {
+    return $(`<tr>
+                    <td class="map-name">${object}</td>
+                  </tr>`)
+                }
+
+
 
   const getLocation = () => {
     if (navigator.geolocation) {
@@ -126,12 +143,14 @@ $(() => {
     const mapArr = pathname.split("/");
     const mapId = mapArr[2];
     console.log("MAP ID", mapId);
+    drawTable(name)
     $.ajax({
       url: "/map/pins",
       method: "POST",
       data: {lat, long, name, mapId}
     })
       .then(data => {
+
         console.log(data);
       })
       .catch(error => console.log(error));
