@@ -2,12 +2,25 @@ $(() => {
   let map;
   const drawPins = (arr, map) => {
     const pin = $("#pin-list").append();
-
+    let marker = null;
     for (const pinData of arr) {
-      L.marker([pinData.latitude, pinData.longitude]).addTo(map)
+      L.marker([pinData.latitude, pinData.longitude], {draggable:'true'}).addTo(map)
         .bindPopup(`${pinData.title}`)
-        .openPopup();
+        .openPopup()
+        .on('dragend', function(event) {
+          marker = event.target;
+          let position = marker.getLatLng();
+          marker.setLatLng(new L.LatLng(position.lat, position.lng),{draggable:'true'});
+          map.panTo(new L.LatLng(position.lat, position.lng));
+        })
+        .on('click', function(event) {
 
+          let marker = event.target;
+          let position = marker.getLatLng();
+          marker.setLatLng(new L.LatLng(position.lat, position.lng),{draggable:'true'});
+          savePin(position.lat, position.lng, pinName);
+
+        });
     }
   };
 
@@ -24,7 +37,6 @@ $(() => {
                     <td class="map-name">${object}</td>
                   </tr>`);
   };
-
 
 
   const getLocation = () => {
@@ -133,70 +145,83 @@ $(() => {
         map.panTo(new L.LatLng(position.lat, position.lng));
       })
       .on('click', function(event) {
-
         let marker = event.target;
         let position = marker.getLatLng();
         marker.setLatLng(new L.LatLng(position.lat, position.lng),{draggable:'true'});
         savePin(position.lat, position.lng, pinName);
-
       });
 
   };
 
-  // var table = $("table tbody");
-  //   table.find('tr').each(function (i) {
-  //       var $tds = $(this).find('td'),
-  //           productId = $tds.eq(0).text(),
-
-  const validatePin = (pin) => {
-    console.log("PIN: ", pin);
-    const $table = $("table tbody");
-    // console.log("TABLE: ", $table.innerHTML);
-
-    $table.find('tr').each(function(i) {
-
-      const $tds = $(this).find('td'),
-        name = $tds.eq(0).text();
-         console.log("PIN: ", pin, "NAME: ", name);
-      if (name === pin) {
-        console.log("match!");
-        return "A"
-      }
-      return "B"
-    });
-
-  };
 
   const savePin = (lat, long, name,) => {
     let pathname = window.location.pathname;
     const mapArr = pathname.split("/");
     const mapId = mapArr[2];
-    console.log("MAP ID", mapId);
 
-    let heyyou = validatePin(name)
-    console.log(heyyou)
-
-    if (heyyou === "B") {
-      drawTable(name);
-      $.ajax({
-        url: "/map/pins",
-        method: "POST",
-        data: {lat, long, name, mapId}
+    drawTable(name);
+    $.ajax({
+      url: "/map/pins",
+      method: "POST",
+      data: {lat, long, name, mapId}
+    })
+      .then(data => {
+        console.log(data);
       })
-        .then(data => {
-          console.log(data);
-        })
-        .catch(error => console.log(error));
-    }
+      .catch(error => console.log(error));
 
   };
 
-  const showPin = (myArr) => {
-    $.ajax(`/api/maps/${myArr[2]}`, { method: "GET" })
-      .then(function(results) {
+  const renderTable = () => {
+
+  };
+
+  const updatePinName = () => {
+    $(".fa-edit").on("click", function() {
+      const $inputDiv = $(this).siblings("div");
+      if ($inputDiv.is(":hidden")) {
+        $inputDiv.slideDown("slow");
+        $inputDiv.css("display", "flex");
+      }
+      $(".addBtn").on("click", function() {
+        const newTitle = $(".new-pin").val();
+        $(".new-pin").val("");
+        $inputDiv.hide();
+        const $td = $(this).parent("div").parent("td");
+        const pinId = $td.attr("data-id");
+        $.ajax({
+          url: "/map/pin/update",
+          method: "POST",
+          data: {pinId, newTitle}
+        })
+          .then(data => {
+            location.reload(true);
+          })
+          .catch(error => console.log(error));
 
       });
+    });
   };
+
+  updatePinName();
+
+  const deletePin = () => {
+    $(".fa-trash-alt").on("click", function() {
+      const $textDiv = $(this).parent("td");
+      const pinId = $textDiv.attr('data-id');
+      $.ajax({
+        url: "/map/pin/delete",
+        method: "POST",
+        data: {pinId}
+      })
+        .then(data => {
+          location.reload(true);
+        })
+        .catch(error => console.log(error));
+    });
+  };
+
+  deletePin();
 
 
 

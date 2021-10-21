@@ -4,7 +4,6 @@ const db = require("../lib/pinQueries.js");
 
 
 router.get("/:id", (req, res) => {
-  const username = req.session.username;
   const map_id = req.params.id;
 
   db.getPinsByMap(map_id)

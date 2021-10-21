@@ -1,8 +1,9 @@
 .side-bar__new-map {
-  width: 20%;
+  width: auto;
   height: auto;
   background-color: #c3b299;
   border-radius: 8px;
+  padding: 0.5em;
 }
 
 .main_container {
@@ -49,6 +50,30 @@
   width: 70%;
   text-align: center;
   margin-top: 10%;
+}
+
+.pin-name:hover {
+  i {
+    display: inline-block;
+  }
+}
+
+.pin-name i {
+  width: 2.5em;
+  display: none;
+  cursor: pointer;
+}
+
+.pins-table {
+  width: 14em;
+}
+
+.pins {
+  display: none;
+}
+
+.hidden-inputs {
+  display: none;
 }
 
 td,

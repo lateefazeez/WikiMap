@@ -51,6 +51,8 @@ const loginRoute = require("./routes/login");
 
 const profileRoute = require("./routes/profilePage");
 const pinCollection = require("./routes/JSONgetPins");
+const updatePinById = require("./routes/updatePin");
+const deletePinById = require("./routes/deletePin");
 
 // Mount all resource routes
 app.use("/", allMapRoutes);
@@ -62,6 +64,8 @@ app.use("/maps", currentMap);
 app.use("/maps", createMapRouter);
 app.use("/api/create-map", createMapRouter);
 app.use("/map/pins", savePin);
+app.use("/map/pin/update", updatePinById);
+app.use("/map/pin/delete", deletePinById);
 
 app.use("/api/maps", pinCollection);
 

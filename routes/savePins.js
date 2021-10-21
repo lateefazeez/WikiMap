@@ -12,7 +12,8 @@ router.post("/", (req, res) => {
   const description = "description";
   const thumbnail_image = "map_image";
   const layer_id = 1;
-  console.log("MAP 2", map_id);
+
+  const user_id = req.session.userId;
 
   const map = {
     contributor_id,
@@ -25,33 +26,22 @@ router.post("/", (req, res) => {
     layer_id
   };
 
-  // router.get("/:id", (req, res) => {
-  //   const username = req.session.username;
-  //   const map_id = req.params.id;
+  if (!user_id) {
+    return;
+  } else {
+    db.generatePin(map)
+      .then(data => {
+        res.redirect(`/maps/${data[0].id}`);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  }
 
-  //   db.getPinsByMap(map_id)
-  //     .then(pincollection => {
-  //       res.json(pincollection);
-  //     })
-  //     .catch(err => {
-  //       res
-  //         .status(500)
-  //         .json({ error: err.message });
-  //     });
-  // });
 
-  db.generatePin(map)
-    .then(data => {
-      console.log(data[0]);
-      // res.redirect(`/maps/${data[0].id}`);
-    })
-    .catch(err => {
-      res
-        .status(500)
-        .json({ error: err.message });
-    });
 });
-
 
 
 module.exports = router;

@@ -13,7 +13,6 @@
           crossorigin=""
         />
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   </head>
 
   <body>
@@ -48,12 +47,20 @@
               <thead class="tab-head">
                 <tr>
                   <th scope="col">Pins</th>
+
                 </tr>
               </thead>
               <tbody class="pintab">
-                <% for(let pin in pins) { %>
-                  <tr>
-                    <td class="map-name"><%= pins[pin]['title'] %></td>
+                <% for(let pin of pins) { %>
+                  <tr class="pin-name" data-id="<%= pin.id %>" data-title="<%= pin.title %>">
+                    <td class="map-name" data-id="<%= pin.id %>"><%=pin.title%>
+                      <i class="far fa-edit"></i>
+                      <i class="far fa-trash-alt"></i>
+                      <div id="<%= pin.id %>"  class="hidden-inputs">
+                        <input class="new-pin" type="text" value="<%= pin.title %>"/>
+                        <button class="btn btn-primary addBtn" data-div="<%= pin.id %>">Save</button>
+                      </div>
+                    </td>
                   </tr>
                 <% } %>
               </tbody>
