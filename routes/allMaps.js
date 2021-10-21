@@ -5,14 +5,40 @@
 const express = require('express');
 const router  = express.Router();
 const db = require('../lib/mapqueries.js');
+const dc = require('../lib/favoritesQueries.js');
+
 
 router.get("/", (req, res) => {
   const username = req.session.username;
   db.getAllMaps()
     .then(allMaps => {
-      const templateVars = { gallerymaps: allMaps, user: username};
+
+      dc.getAllFavorites()
+      .then(allFavs => {
+
+        const final = allMaps.map((map) => {
+          let resutlingMap = {...map}
+
+           const foundFavorite = allFavs.find((favorite) => {
+
+                                if (map.id === favorite.map_id){
+                                  return true
+                                } else {
+                                  return false
+                                }
+          })
+
+
+          resutlingMap.favorited = foundFavorite || null
+
+          return resutlingMap
+        })
+
+
+      const templateVars = { gallerymaps: final, user: username};
       res.render("gallerypages", templateVars);
 
+    })
     })
     .catch(err => {
       res
@@ -24,3 +50,5 @@ router.get("/", (req, res) => {
 
 
 module.exports = router;
+
+

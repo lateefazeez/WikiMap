@@ -6,7 +6,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("../lib/mapqueries.js");
 const dc = require("../lib/pinQueries.js");
-
+const dd = require('../lib/favoritesQueries.js');
 
 router.get("/:id", (req, res) => {
   const username = req.session.username;
@@ -16,8 +16,16 @@ router.get("/:id", (req, res) => {
 
       dc.getPinsByMap(map_id)
         .then(pincollection => {
-          res.render("map", { mapName: currentMap[0]['name'], user: username, pins: pincollection });
+
+          dd.isMapFavorited(map_id)
+          .then(mapFav => {
+
+            let mapVar = mapFav.length
+
+
+          res.render("map", { mapName: currentMap[0]['name'], user: username, pins: pincollection, mapVar });
         })
+      })
         .catch(err => {
           res
             .status(500)
@@ -27,3 +35,5 @@ router.get("/:id", (req, res) => {
 });
 
 module.exports = router;
+
+

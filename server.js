@@ -52,6 +52,7 @@ const loginRoute = require("./routes/login");
 const profileRoute = require("./routes/profilePage");
 const pinCollection = require("./routes/JSONgetPins");
 
+
 // Mount all resource routes
 app.use("/", allMapRoutes);
 app.use("/user/maps", myMapRoutes);
@@ -69,6 +70,8 @@ app.use("/logout", logoutRoute);
 app.use("/login", loginRoute);
 
 app.use("/user/profile", profileRoute);
+
+app.use("/api/favorites", myFavoriteMaps);
 
 //app.use("/maps", pinCollection);
 

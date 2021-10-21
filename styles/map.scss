@@ -7,6 +7,41 @@
 
 .main_container {
   padding: 2em;
+
+}
+
+.top-box {
+  display: flex;
+  flex-direction: row;
+  background-color: tan;
+  justify-content: space-between;
+  border-radius: 10px;
+}
+
+.mid-box{
+  display: flex;
+  flex-direction: row;
+  font-size: x-large;
+  color: rgb(175, 32, 32);
+  font-weight: bolder;
+}
+
+label {
+  display: inline-block;
+  margin-top: 20px;
+  font-family: fantasy;
+}
+
+#hrt {
+ margin-top: 17px;
+ margin-left: 30px;
+ width: 50px;
+ font-size: 33px;
+}
+
+
+#search-form {
+  margin-right: 30px;
 }
 
 .map-creator {
@@ -71,4 +106,17 @@ th:first-child {
 .popup-text {
   color: green;
   font-size: 1em;
+}
+
+
+#hort {
+  height: 50px;
+  width: 50px;
+  font-size: 33px;
+  color: lightgray;
+  z-index: 1;
+}
+
+#hort {
+  color: rgb(173, 28, 28);
 }
