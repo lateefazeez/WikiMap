@@ -55,7 +55,9 @@ $(() => {
           map.panTo(new L.LatLng(position.lat, position.lng));
         })
         .on('click', function(event) {
-
+          if (marker) {
+            marker.off("click");
+          }
           let marker = event.target;
           let position = marker.getLatLng();
           marker.setLatLng(new L.LatLng(position.lat, position.lng),{draggable:'true'});
@@ -64,6 +66,8 @@ $(() => {
         });
     }
   };
+
+
   const loadPins = () => {
     let pathname = window.location.pathname;
     const myArr = pathname.split("/");
@@ -110,35 +114,44 @@ $(() => {
       .catch(error => console.log(error));
   };
 
-  const updatePinName = () => {
-    $(document).on("click", ".fa-edit", function() {
-      console.log("CLICKED");
-      const $inputDiv = $(this).siblings("div");
-      if ($inputDiv.is(":hidden")) {
-        $inputDiv.slideDown("slow");
-        $inputDiv.css("display", "flex");
-      }
-      $(".addBtn").on("click", function() {
-        const newTitle = $(".new-pin").val();
-        console.log("New Title", newTitle);
-        $inputDiv.hide();
-        const $td = $(this).parent("div").parent("td");
-        const pinId = $td.attr("data-id");
-        $.ajax({
-          url: "/map/pin/update",
-          method: "POST",
-          data: {pinId, newTitle}
-        })
-          .then(data => {
-            $('.pintab').html("");
-            loadPins();
-          })
-          .catch(error => console.log(error));
 
-      });
+  $(document).on("click", ".fa-edit", function() {
+    const $inputDiv = $(this).siblings("div");
+    if ($inputDiv.is(":hidden")) {
+      $inputDiv.slideDown("slow");
+      $inputDiv.css("display", "flex");
+    }
+  });
+
+  $(document).on("click", ".addBtn", function() {
+    const newTitle = $(this).siblings("input").val();
+    console.log("New Title", newTitle);
+    const $inputDiv = $(this).parent("div");
+    $inputDiv.hide();
+    const $td = $(this).parent("div").parent("td");
+    const pinId = $td.attr("data-id");
+    $.ajax({
+      url: "/map/pin/update",
+      method: "POST",
+      data: {pinId, newTitle}
+    })
+      .then(data => {
+        $('.pintab').html("");
+        loadPins();
+      })
+      .catch(error => console.log(error));
+
+  });
+
+
+
+  const redrawPins = () => {
+    let pathname = window.location.pathname;
+    const myArr = pathname.split("/");
+    $.ajax(`/api/maps/${myArr[2]}`, { method: "GET" }).then(function(results) {
+      drawPins(results, map);
     });
   };
-  updatePinName();
 
   const deletePin = () => {
     $(document).on("click", ".fa-trash-alt", function() {
@@ -152,6 +165,7 @@ $(() => {
         .then(data => {
           $('.pintab').html("");
           loadPins();
+          redrawPins();
         })
         .catch(error => console.log(error));
     });
@@ -270,6 +284,13 @@ $(() => {
       });
   };
 
+
+  const removeMarker = (response) => {
+    let coordinates = response.features[0].geometry.coordinates; // The coordintaes are in a [<lng>, <lat>] format/
+    let latLng = L.latLng([coordinates[1], coordinates[0]]);
+    // map.setView(latLng, 13);
+    let marker = L.marker(latLng).addTo(map);
+  };
 
   const savePin = (lat, long, name) => {
     let pathname = window.location.pathname;
