@@ -19,11 +19,14 @@ router.get("/:id", (req, res) => {
 
           dd.isMapFavorited(map_id)
             .then(mapFav => {
-
               let mapVar = mapFav.length;
-
-
+              console.log("PINS FROM COL", pincollection);
               res.render("map", { mapName: currentMap[0]['name'], user: username, pins: pincollection, mapVar });
+            })
+            .catch(err => {
+              res
+                .status(500)
+                .json({ error: err.message });
             });
         })
         .catch(err => {
