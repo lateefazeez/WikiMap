@@ -18,14 +18,14 @@ router.get("/:id", (req, res) => {
         .then(pincollection => {
 
           dd.isMapFavorited(map_id)
-          .then(mapFav => {
+            .then(mapFav => {
 
-            let mapVar = mapFav.length
+              let mapVar = mapFav.length;
 
 
-          res.render("map", { mapName: currentMap[0]['name'], user: username, pins: pincollection, mapVar });
+              res.render("map", { mapName: currentMap[0]['name'], user: username, pins: pincollection, mapVar });
+            });
         })
-      })
         .catch(err => {
           res
             .status(500)

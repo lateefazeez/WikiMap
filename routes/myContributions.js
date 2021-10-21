@@ -14,30 +14,30 @@ router.get("/", (req, res) => {
     .then(myContributed => {
 
       dc.getFavoritesByUser(user_id)
-      .then(favorites => {
+        .then(favorites => {
 
-        const final = myContributed.map((map) => {
-          let resutlingMap = {...map}
+          const final = myContributed.map((map) => {
+            let resutlingMap = {...map};
 
-           const foundFavorite = favorites.find((favorite) => {
+            const foundFavorite = favorites.find((favorite) => {
 
-                                if (map.id === favorite.map_id){
-                                  return true
-                                } else {
-                                  return false
-                                }
-          })
+              if (map.id === favorite.map_id) {
+                return true;
+              } else {
+                return false;
+              }
+            });
 
 
-          resutlingMap.favorited = foundFavorite || null
+            resutlingMap.favorited = foundFavorite || null;
 
-          return resutlingMap
-        })
-
-      const templateVars = { gallerymaps: final, user: username};
-      res.render("gallerypages", templateVars);
+            return resutlingMap;
+          });
+          console.log(final);
+          const templateVars = { gallerymaps: final, user: username};
+          res.render("gallerypages", templateVars);
+        });
     })
-  })
     .catch(err => {
       res
         .status(500)

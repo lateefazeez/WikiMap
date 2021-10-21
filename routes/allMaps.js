@@ -14,31 +14,31 @@ router.get("/", (req, res) => {
     .then(allMaps => {
 
       dc.getAllFavorites()
-      .then(allFavs => {
+        .then(allFavs => {
 
-        const final = allMaps.map((map) => {
-          let resutlingMap = {...map}
+          const final = allMaps.map((map) => {
+            let resutlingMap = {...map};
 
-           const foundFavorite = allFavs.find((favorite) => {
+            const foundFavorite = allFavs.find((favorite) => {
 
-                                if (map.id === favorite.map_id){
-                                  return true
-                                } else {
-                                  return false
-                                }
-          })
-
-
-          resutlingMap.favorited = foundFavorite || null
-
-          return resutlingMap
-        })
+              if (map.id === favorite.map_id) {
+                return true;
+              } else {
+                return false;
+              }
+            });
 
 
-      const templateVars = { gallerymaps: final, user: username};
-      res.render("gallerypages", templateVars);
+            resutlingMap.favorited = foundFavorite || null;
 
-    })
+            return resutlingMap;
+          });
+
+
+          const templateVars = { gallerymaps: final, user: username};
+          res.render("gallerypages", templateVars);
+
+        });
     })
     .catch(err => {
       res
