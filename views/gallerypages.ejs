@@ -11,6 +11,7 @@
     <script type="text/javascript" src="/scripts/app.js"></script>
 
     <%- include('partials/_head') %>
+
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
@@ -28,8 +29,7 @@
     <%- include('partials/_header') %>
 
     <div class="gallery">
-      <% for(let map in gallerymaps) { %>
-
+      <% for(let map of gallerymaps) { %> <<<<<<< HEAD
       <a class="map-box" href="/maps/<%= gallerymaps[map]['id'] %>">
         <div class="pic">
           <img
@@ -38,8 +38,24 @@
         </div>
         <div class="map-name"><%= gallerymaps[map]['name'] %></div>
       </a>
+      =======
+      <a class="map-box" href="/maps/<%= map['id'] %>">
+        <div class="pic">
+          <img
+            src="https://images.unsplash.com/photo-1553864250-05b20249ee0c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bWFwc3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=60"
+          />
+          <div class="bottom-box">
+            <div class="map-name"><%= map['name'] %></div>
 
-      <% } %>
+            <i
+              class="fas fa-heart"
+              id="hort"
+              style="color:<%=map.favorited ? 'rgb(175, 32, 32)' : 'lightgray' %>;"
+            ></i>
+          </div>
+        </div>
+      </a>
+      >>>>>>> 6a44e90af903e3a10c94bee61b48d52ee109c3de <% } %>
     </div>
     <%- include('partials/_foot-scripts') %> <%- include('partials/_footer') %>
   </body>

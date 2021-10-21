@@ -33,6 +33,13 @@
   border-radius: 10px;
 }
 
+.bottom-box {
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+  justify-content: space-between;
+}
+
 .map-box:hover {
   box-shadow: 10px 10px rgb(184, 184, 185);
 }
@@ -53,6 +60,8 @@ img {
   font-size: large;
   color: #000;
   padding-top: 10px;
+  width: 70%;
+  margin-left: 15px;
 }
 
 @media only screen and (min-width: 1300px) {
@@ -70,3 +79,15 @@ img {
     left: 5%;
   }
 }
+
+.fa-heart {
+  font-size: 33px;
+  padding-top: 8px;
+  color: lightgray;
+  z-index: 1;
+}
+
+.fa-heart:checked {
+  color: rgb(173, 28, 28);
+}
+

@@ -54,6 +54,7 @@ const pinCollection = require("./routes/JSONgetPins");
 const updatePinById = require("./routes/updatePin");
 const deletePinById = require("./routes/deletePin");
 
+
 // Mount all resource routes
 app.use("/", allMapRoutes);
 app.use("/user/maps", myMapRoutes);
@@ -73,6 +74,8 @@ app.use("/logout", logoutRoute);
 app.use("/login", loginRoute);
 
 app.use("/user/profile", profileRoute);
+
+app.use("/api/favorites", myFavoriteMaps);
 
 //app.use("/maps", pinCollection);
 

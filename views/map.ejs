@@ -20,10 +20,19 @@
 
     <main data-id="id">
       <div class="main_container">
-        <div class="search_bar">
+
+        <div class="top-box">
+          <div class="mid-box">
+          <i class="fas fa-heart" id= "hrt" style="color:<%= (mapVar === 1) ? 'rgb(175, 32, 32)' : 'lightgrey' %>;" ></i>
+          <label>Favorite Me</label>
+         </div>
+
+          <div class="fav-button"></div>
+
           <div class="alert alert-danger" role="alert" id="empty-search">
             Please enter a valid address to search!
           </div>
+
           <form class="form-inline my-2 my-lg-0" id="search-form">
             <input
               class="form-control mr-sm-2 search_input"
@@ -36,8 +45,11 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="button" id="search-button">
               Search
             </button>
+
           </form>
+
         </div>
+      </div>
       </div>
       <div class="map-creator">
         <div class="side-bar__new-map">
