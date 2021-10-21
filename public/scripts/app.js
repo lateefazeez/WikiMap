@@ -16,23 +16,14 @@ $(() => {
     console.log(URL, mapArr);
 
     if (theColorIs === "rgb(211, 211, 211)") {
-
-
       $(this).css("color", 'rgb(175, 32, 32)');
-
       $.ajax({
         url: "/api/favorites",
         method: "POST",
         data: {mapId},
       }).then(function(data) {
-
-
       });
-
-
     } else {
-
-
       $(this).css("color", 'lightgrey');
 
       $.ajax({
@@ -47,6 +38,35 @@ $(() => {
 
     }
   });
+
+  const updatePinName = () => {
+    $(".fa-edit").on("click", function() {
+      const $inputDiv = $(this).siblings("div");
+      if ($inputDiv.is(":hidden")) {
+        $inputDiv.slideDown("slow");
+        $inputDiv.css("display", "flex");
+      }
+      $(".addBtn").on("click", function() {
+        const newTitle = $(".new-pin").val();
+        $(".new-pin").val("");
+        $inputDiv.hide();
+        const $td = $(this).parent("div").parent("td");
+        const pinId = $td.attr("data-id");
+        $.ajax({
+          url: "/map/pin/update",
+          method: "POST",
+          data: {pinId, newTitle}
+        })
+          .then(data => {
+            location.reload(true);
+          })
+          .catch(error => console.log(error));
+
+      });
+    });
+  };
+
+  updatePinName();
 
   let map;
   const drawPins = (arr, map) => {
@@ -226,38 +246,6 @@ $(() => {
 
   };
 
-  const renderTable = () => {
-
-  };
-
-  const updatePinName = () => {
-    $(".fa-edit").on("click", function() {
-      const $inputDiv = $(this).siblings("div");
-      if ($inputDiv.is(":hidden")) {
-        $inputDiv.slideDown("slow");
-        $inputDiv.css("display", "flex");
-      }
-      $(".addBtn").on("click", function() {
-        const newTitle = $(".new-pin").val();
-        $(".new-pin").val("");
-        $inputDiv.hide();
-        const $td = $(this).parent("div").parent("td");
-        const pinId = $td.attr("data-id");
-        $.ajax({
-          url: "/map/pin/update",
-          method: "POST",
-          data: {pinId, newTitle}
-        })
-          .then(data => {
-            location.reload(true);
-          })
-          .catch(error => console.log(error));
-
-      });
-    });
-  };
-
-  updatePinName();
 
   const deletePin = () => {
     $(".fa-trash-alt").on("click", function() {
