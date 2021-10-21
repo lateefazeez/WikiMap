@@ -226,9 +226,6 @@ $(() => {
 
   };
 
-  const renderTable = () => {
-
-  };
 
   const updatePinName = () => {
     $(".fa-edit").on("click", function() {
