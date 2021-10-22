@@ -7,6 +7,7 @@ const router  = express.Router();
 const db = require('../lib/mapqueries.js');
 const dc = require('../lib/favoritesQueries.js');
 
+//----------------------------------------------------------------------------------------------------
 
 router.get("/", (req, res) => {
   const username = req.session.username;
@@ -21,7 +22,6 @@ router.get("/", (req, res) => {
             let resutlingMap = {...map};
 
 
-            //console.log(resutlingMap)
             const foundFavorite = allFavs.find((favorite) => {
 
               if (map.id === favorite.map_id) {
