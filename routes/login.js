@@ -22,6 +22,8 @@ router.get("/:id", (req, res) => {
         .json({ error: err.message });
     });
 });
+
+console.log('hi')
 module.exports = router;
 
 
