@@ -13,13 +13,15 @@ This project is a multiple AJAX-based google map clone that uses jQuery, ejs, HT
 
 ## Final Product
 
-!["screenshot of homepage"](https://github.com/lateefazeez/tweeter/blob/master/docs/desktop-view.png?raw=true)
+!["screenshot of map and locations created"](https://github.com/Freem11/lhl-midterm-group11/blob/walkthrough/docs/user_profile.png?raw=true)
 
-!["screenshot of map creation"](https://github.com/lateefazeez/tweeter/blob/master/docs/mobile-view-unscrolled.png?raw=true)
+!["screenshot of homepage"](https://github.com/Freem11/lhl-midterm-group11/blob/walkthrough/docs/user_not_logged_in.png?raw=true)
 
-!["screenshot of map and locations created"](https://github.com/lateefazeez/tweeter/blob/master/docs/mobile-view-scrolled.png?raw=true)
+!["screenshot of map creation"](https://github.com/Freem11/lhl-midterm-group11/blob/walkthrough/docs/creating_a_map.png?raw=true)
 
-!["screenshot of user profile"](https://github.com/lateefazeez/tweeter/blob/master/docs/mobile-view-scrolled.png?raw=true)
+!["screenshot of map creation"](https://github.com/Freem11/lhl-midterm-group11/blob/walkthrough/docs/creating_map.png?raw=true)
+
+!["screenshot of user profile"](hhttps://github.com/Freem11/lhl-midterm-group11/blob/walkthrough/docs/created_pins.png?raw=true)
 
 ## Dependencies
 
