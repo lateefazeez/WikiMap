@@ -21,7 +21,7 @@ This project is a multiple AJAX-based google map clone that uses jQuery, ejs, HT
 
 !["screenshot of map creation"](https://github.com/Freem11/lhl-midterm-group11/blob/walkthrough/docs/creating_map.png?raw=true)
 
-!["screenshot of user profile"](hhttps://github.com/Freem11/lhl-midterm-group11/blob/walkthrough/docs/created_pins.png?raw=true)
+!["screenshot of user profile"](https://github.com/Freem11/lhl-midterm-group11/blob/walkthrough/docs/created_pins.png?raw=true)
 
 ## Dependencies
 
