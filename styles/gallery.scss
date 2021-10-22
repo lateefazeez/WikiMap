@@ -42,6 +42,12 @@
 
 .map-box:hover {
   box-shadow: 10px 10px rgb(184, 184, 185);
+  text-decoration: none;
+
+  .fa-trash-alt{
+    visibility:visible;
+  }
+
 }
 
 img {
@@ -59,7 +65,7 @@ img {
   font-family: fantasy;
   font-size: large;
   color: #000;
-  padding-top: 10px;
+  padding-top: 15px;
   width: 70%;
   margin-left: 15px;
 }
@@ -85,9 +91,21 @@ img {
   padding-top: 8px;
   color: lightgray;
   z-index: 1;
+  cursor: pointer;
+
 }
 
-.fa-heart:checked {
-  color: rgb(173, 28, 28);
-}
+.icon-box {
+  display: flex;
+  }
+
+  .fa-trash-alt{
+    visibility:hidden;
+    position:absolute;
+    margin-top: 10px;
+    margin-left: 255px;
+    font-size: 33px;
+    color: wheat;
+    ;
+  }
 

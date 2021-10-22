@@ -34,7 +34,7 @@ router.get("/", (req, res) => {
             return resutlingMap;
           });
 
-
+          console.log(final)
           const templateVars = { gallerymaps: final, user: username};
           res.render("gallerypages", templateVars);
 

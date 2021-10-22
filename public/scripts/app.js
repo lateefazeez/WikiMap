@@ -1,6 +1,32 @@
 
 $(() => {
 
+  $(".far").on("click", function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const URL = $(this).parents(".map-box").attr("href") ||  window.location.pathname;
+    const mapArr = URL.split("/");
+    const mapId = mapArr[2];
+
+    $.ajax({
+      url: "/maps/delete",
+      method: "POST",
+      data: {mapId},
+    }).then(function(data) {
+
+      $.ajax({
+        url: "/",
+        method: "GET",
+      }).then(function(data) {
+
+        window.location.replace("http://localhost:8080/")
+      });
+
+    });
+
+  })
+
 
   $(".fas").on("click", function(e) {
     e.preventDefault();
@@ -71,6 +97,14 @@ $(() => {
   const loadPins = () => {
     let pathname = window.location.pathname;
     const myArr = pathname.split("/");
+
+
+    if (!myArr[2]) {
+      return
+    } else if (isNaN(parseInt(myArr[2]))) {
+      return
+    }
+
     $.ajax(`/api/maps/${myArr[2]}`, { method: "GET" }).then(function(results) {
       renderTable(results);
     });
@@ -148,6 +182,7 @@ $(() => {
   const redrawPins = () => {
     let pathname = window.location.pathname;
     const myArr = pathname.split("/");
+    console.log("redrawpins", myArr)
     $.ajax(`/api/maps/${myArr[2]}`, { method: "GET" }).then(function(results) {
       drawPins(results, map);
     });
@@ -217,6 +252,7 @@ $(() => {
 
     const myArr = pathname.split("/");
 
+
     $.ajax(`/api/maps/${myArr[2]}`, { method: "GET" }).then(function(results) {
       drawPins(results, map);
     });
@@ -239,7 +275,7 @@ $(() => {
           .then(function(data) {
             let coordinates = data.features[0].geometry.coordinates;
             coords.push([coordinates[1], coordinates[0]]);
-            let pinNameArray = data.features[0].properties.label.split(" ");
+            let pinNameArray = data.features[0].properties.label.split(",");
             pinName = `${pinNameArray[0]} ${pinNameArray[1]} `;
             //and if it is success drawing map and marker
             addNewMarker(data);
