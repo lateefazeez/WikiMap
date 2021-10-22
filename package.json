@@ -1,7 +1,7 @@
 {
   "name": "node-skeleton",
   "version": "1.0.0",
-  "description": "",
+  "description": "A cool map application that allows users to collaborate on creating, updating and editing a map",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,7 +9,7 @@
     "local": "./node_modules/.bin/nodemon -L --ignore public/",
     "db:reset": "node bin/resetdb.js"
   },
-  "author": "Lighthouse Labs",
+  "author": "Matt Freeman, Lateef Azeez",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",

@@ -27,12 +27,11 @@ $(() => {
 
   })
 
+window.markers = {};
 
   $(".fas").on("click", function(e) {
     e.preventDefault();
     e.stopPropagation();
-
-
     const theColorIs = $(this).css("color");
 
     const URL = $(this).parents(".map-box").attr("href") ||  window.location.pathname;
@@ -71,7 +70,13 @@ $(() => {
     const pin = $("#pin-list").append();
     let marker = null;
     for (const pinData of arr) {
-      L.marker([pinData.latitude, pinData.longitude], {draggable:'true'}).addTo(map)
+      console.log("PINDATA", pinData);
+      if (window.markers[pinData.id]) {
+        let leafletId = window.markers[pinData.id];
+        window.map._layers[leafletId].remove();
+      }
+
+      const mark = L.marker([pinData.latitude, pinData.longitude], {draggable:'true'}).addTo(map)
         .bindPopup(`${pinData.title}`)
         .openPopup()
         .on('dragend', function(event) {
@@ -79,17 +84,19 @@ $(() => {
           let position = marker.getLatLng();
           marker.setLatLng(new L.LatLng(position.lat, position.lng),{draggable:'true'});
           map.panTo(new L.LatLng(position.lat, position.lng));
+          // updateOnDragMarker(position.lat, position.lng);
         })
         .on('click', function(event) {
           if (marker) {
             marker.off("click");
           }
           let marker = event.target;
+          const markerId = marker._leaflet_id;
           let position = marker.getLatLng();
           marker.setLatLng(new L.LatLng(position.lat, position.lng),{draggable:'true'});
-          savePin(position.lat, position.lng, pinName);
-
+          savePin(position.lat, position.lng, pinName, markerId);
         });
+      window.markers[pinData.id] = mark._leaflet_id;
     }
   };
 
@@ -119,7 +126,7 @@ $(() => {
   const createTableTableBody = (pin) => {
 
     const $row = $(`<tr class="pin-name" data-id="${pin.id}" data-title="${pin.title}">
-    <td class="map-name" data-id=" ${pin.id} ">${pin.title}
+    <td class="map-name" data-id=" ${pin.id} " data-latlng="">${pin.title}
     <i class="far fa-edit"></i>
     <i class="far fa-trash-alt"></i>
     <div id="${pin.id}" class="hidden-inputs">
@@ -131,22 +138,18 @@ $(() => {
     return $row;
   };
 
-  const updateOnDragMarker = (lat, long, name) => {
-    let pathname = window.location.pathname;
-    const mapArr = pathname.split("/");
-    const mapId = mapArr[2];
-
-    $.ajax({
-      url: "/map/pins",
-      method: "POST",
-      data: {lat, long, name, mapId}
-    })
-      .then(data => {
-        $('.pintab').html("");
-        loadPins();
-      })
-      .catch(error => console.log(error));
-  };
+  // const updateOnDragMarker = (lat, long) => {
+  //   $.ajax({
+  //     url: "/map/pins/pin/update",
+  //     method: "POST",
+  //     data: {lat, long}
+  //   })
+  //     .then(data => {
+  //       $('.pintab').html("");
+  //       loadPins();
+  //     })
+  //     .catch(error => console.log(error));
+  // };
 
 
   $(document).on("click", ".fa-edit", function() {
@@ -159,7 +162,6 @@ $(() => {
 
   $(document).on("click", ".addBtn", function() {
     const newTitle = $(this).siblings("input").val();
-    console.log("New Title", newTitle);
     const $inputDiv = $(this).parent("div");
     $inputDiv.hide();
     const $td = $(this).parent("div").parent("td");
@@ -178,20 +180,12 @@ $(() => {
   });
 
 
-
-  const redrawPins = () => {
-    let pathname = window.location.pathname;
-    const myArr = pathname.split("/");
-    console.log("redrawpins", myArr)
-    $.ajax(`/api/maps/${myArr[2]}`, { method: "GET" }).then(function(results) {
-      drawPins(results, map);
-    });
-  };
-
   const deletePin = () => {
     $(document).on("click", ".fa-trash-alt", function() {
       const $textDiv = $(this).parent("td");
-      const pinId = $textDiv.attr('data-id');
+      const pinId = $textDiv.attr("data-id").trim();
+      const latLng = $textDiv.attr("data-latlng");
+      console.log("FROM DELETE:", latLng);
       $.ajax({
         url: "/map/pin/delete",
         method: "POST",
@@ -200,27 +194,15 @@ $(() => {
         .then(data => {
           $('.pintab').html("");
           loadPins();
-          redrawPins();
+          let leafletId = window.markers[pinId];
+          console.log(leafletId, pinId, window.markers);
+          window.map._layers[leafletId].remove();
         })
         .catch(error => console.log(error));
     });
   };
 
   deletePin();
-
-
-  // const drawTable = (pinData) => {
-  //   let $pin = createTableElement(pinData);
-
-
-  //   $(".pintab").append($pin);
-  // };
-  // const createTableElement = function(object) {
-  //   return $(`<tr>
-  //                   <td class="map-name">${object}</td>
-  //                 </tr>`);
-  // };
-
 
   const getLocation = () => {
     if (navigator.geolocation) {
@@ -233,6 +215,8 @@ $(() => {
       [position.coords.latitude, position.coords.longitude],
       13
     );
+
+    window.map = map;
 
     L.tileLayer(
       "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
@@ -268,21 +252,27 @@ $(() => {
     // drawMarker([51.1646246, -113.9384915]);
     $("#search-button").on("click", function() {
       const $address = $("#search-bar").val();
-      $addresses.push($address);
-      // console.log($addresses);
-      $addresses.forEach((address) => {
-        sendGeocodingRequest(address)
-          .then(function(data) {
-            let coordinates = data.features[0].geometry.coordinates;
-            coords.push([coordinates[1], coordinates[0]]);
-            let pinNameArray = data.features[0].properties.label.split(",");
-            pinName = `${pinNameArray[0]} ${pinNameArray[1]} `;
-            //and if it is success drawing map and marker
-            addNewMarker(data);
-            $("#search-bar").val("");
-          })
-          .catch((err) => console.log(err));
-      });
+      if ($address === "" || $address === null) {
+        if ($("#empty-search").first().is(":hidden")) {
+          $("#empty-search").slideDown("slow");
+        }
+        return;
+      } else {
+        $("#empty-search").hide();
+      }
+
+      sendGeocodingRequest($address)
+        .then(function(data) {
+          let coordinates = data.features[0].geometry.coordinates;
+          coords.push([coordinates[1], coordinates[0]]);
+          let pinNameArray = data.features[0].properties.label.split(" ");
+          pinName = `${pinNameArray[0]} ${pinNameArray[1]} `;
+
+          addNewMarker(data);
+          $("#search-bar").val("");
+
+        })
+        .catch((err) => console.log(err));
     });
   };
   showLocations();
@@ -295,7 +285,10 @@ $(() => {
     let coordinates = response.features[0].geometry.coordinates; // The coordintaes are in a [<lng>, <lat>] format/
     let latLng = L.latLng([coordinates[1], coordinates[0]]);
     // map.setView(latLng, 13);
+    console.log("RESPONSE: ", response);
     let marker = L.marker(latLng, { draggable: "true" }).addTo(map);
+    console.log("MARKER", marker);
+    const markerId = marker._leaflet_id;
     map.fitBounds(coords);
     marker
       .bindPopup(
@@ -316,19 +309,15 @@ $(() => {
         marker.setLatLng(new L.LatLng(position.lat, position.lng), {
           draggable: "true",
         });
-        savePin(position.lat, position.lng, pinName);
+        savePin(position.lat, position.lng, pinName, markerId);
+        marker.off("click");
       });
+
   };
 
+  // SAVE PIN
 
-  const removeMarker = (response) => {
-    let coordinates = response.features[0].geometry.coordinates; // The coordintaes are in a [<lng>, <lat>] format/
-    let latLng = L.latLng([coordinates[1], coordinates[0]]);
-    // map.setView(latLng, 13);
-    let marker = L.marker(latLng).addTo(map);
-  };
-
-  const savePin = (lat, long, name) => {
+  const savePin = (lat, long, name, leafletId) => {
     let pathname = window.location.pathname;
     const mapArr = pathname.split("/");
     const mapId = mapArr[2];
@@ -339,6 +328,11 @@ $(() => {
       data: {lat, long, name, mapId}
     })
       .then(data => {
+        if (window.markers[data]) {
+          let leafletId = window.markers[data];
+          window.map._layers[leafletId].remove();
+        }
+        window.markers[data] = leafletId;
         $('.pintab').html("");
         loadPins();
       })

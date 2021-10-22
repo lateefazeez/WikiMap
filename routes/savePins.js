@@ -31,8 +31,7 @@ router.post("/", (req, res) => {
   } else {
     db.generatePin(map)
       .then(data => {
-        console.log("DATA FROM SERVER: ", data);
-        res.redirect(`/maps/${data[0].map_id}`);
+        res.json(data[0].id);
       })
       .catch(err => {
         res
