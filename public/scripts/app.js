@@ -1,5 +1,32 @@
 
 $(() => {
+
+  $(".far").on("click", function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const URL = $(this).parents(".map-box").attr("href") ||  window.location.pathname;
+    const mapArr = URL.split("/");
+    const mapId = mapArr[2];
+
+    $.ajax({
+      url: "/maps/delete",
+      method: "POST",
+      data: {mapId},
+    }).then(function(data) {
+
+      $.ajax({
+        url: "/",
+        method: "GET",
+      }).then(function(data) {
+
+        window.location.replace("http://localhost:8080/");
+      });
+
+    });
+
+  });
+
   window.markers = {};
 
   $(".fas").on("click", function(e) {
@@ -47,7 +74,7 @@ $(() => {
       }
 
       const mark = L.marker([pinData.latitude, pinData.longitude], {draggable:'true'}).addTo(map)
-        .bindPopup(`${pinData.title}`)
+        .bindPopup(`${pinData.title}<img class="pin-image"src="../../images/pin_image.webp"/><br/><div><p class="popup-text">Click the Marker to add this location to your map</p></div>`)
         .openPopup()
         .on('dragend', function(event) {
           marker = event.target;
@@ -71,6 +98,14 @@ $(() => {
   const loadPins = () => {
     let pathname = window.location.pathname;
     const myArr = pathname.split("/");
+
+
+    if (!myArr[2]) {
+      return;
+    } else if (isNaN(parseInt(myArr[2]))) {
+      return;
+    }
+
     $.ajax(`/api/maps/${myArr[2]}`, { method: "GET" }).then(function(results) {
       renderTable(results);
     });
@@ -195,6 +230,7 @@ $(() => {
 
     const myArr = pathname.split("/");
 
+
     $.ajax(`/api/maps/${myArr[2]}`, { method: "GET" }).then(function(results) {
       drawPins(results, map);
     });
@@ -203,6 +239,7 @@ $(() => {
 
   let coords = [];
   let pinName;
+  let fullMarkerName;
 
   // let locationName = "saddledome calgary";
   const $addresses = [];
@@ -221,11 +258,12 @@ $(() => {
 
       sendGeocodingRequest($address)
         .then(function(data) {
+          console.log("DATA:", data.features);
           let coordinates = data.features[0].geometry.coordinates;
           coords.push([coordinates[1], coordinates[0]]);
           let pinNameArray = data.features[0].properties.label.split(" ");
           pinName = `${pinNameArray[0]} ${pinNameArray[1]} `;
-
+          fullMarkerName = data.features[0].properties.label;
           addNewMarker(data);
           $("#search-bar").val("");
 
@@ -250,7 +288,7 @@ $(() => {
     map.fitBounds(coords);
     marker
       .bindPopup(
-        `${pinName}<br/><br/><div><p class="popup-text">Click the Marker to add this location to your map</p></div>`
+        `${fullMarkerName}<img class="pin-image"src="../../images/pin_image.webp"/><br/><div><p class="popup-text">Click the Marker to add this location to your map</p></div>`
       )
       .openPopup()
       .on("dragend", function(event) {

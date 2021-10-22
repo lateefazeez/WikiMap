@@ -17,8 +17,8 @@
     <!-- </div> -->
     <!-- </form> -->
   </div>
-
-  <div class="navbar-nav">
+  <% if (user) { %>
+  <div class="navbar-nav show">
     <a class="nav-item nav-link" href="/">All Maps</a>
     <a class="nav-item nav-link" href="/user/maps">My Maps</a>
     <a class="nav-item nav-link" href="/user/favorites">My Favorites</a>
@@ -27,7 +27,17 @@
     >
     <a class="nav-item nav-link" href="/user/not">Not Owned</a>
   </div>
-  <% if (user) { %>
+  <% } else { %>
+  <div class="navbar-nav no-show">
+    <a class="nav-item nav-link" href="/">All Maps</a>
+    <a class="nav-item nav-link" href="/user/maps">My Maps</a>
+    <a class="nav-item nav-link" href="/user/favorites">My Favorites</a>
+    <a class="nav-item nav-link" href="/user/contributions"
+      >My Collaborations</a
+    >
+    <a class="nav-item nav-link" href="/user/not">Not Owned</a>
+  </div>
+  <% } %> <% if (user) { %>
   <form class="form-inline" action="/logout" method="POST">
     <a href="/user/profile">
       <h5 class="navbar-brand nav-link"><%= user %>!</h5>

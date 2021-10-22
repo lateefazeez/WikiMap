@@ -14,7 +14,7 @@ router.get("/:id", (req, res) => {
     .then(user => {
       console.log(user[0].name);
       req.session.username = user[0].name;
-      res.redirect("/user/maps");
+      res.redirect("/user/profile");
     })
     .catch(err => {
       res
@@ -22,6 +22,8 @@ router.get("/:id", (req, res) => {
         .json({ error: err.message });
     });
 });
+
+console.log('hi')
 module.exports = router;
 
 

@@ -23,8 +23,7 @@
       <tbody>
         <% for(let i = 0; i<favs.length; i++) { %>
           <tr>
-            <td class ="tabrow"><%= favs[i]['name'] %></td>
-
+            <td class ="tabrow"><a href="/maps/<%= favs[i]['id'] %>"><%= favs[i]['name'] %></a></td>
           </tr>
         <% } %>
       </tbody>
@@ -41,7 +40,7 @@
       <tbody>
         <% for(let i = 0; i<contribs.length; i++) { %>
           <tr>
-            <td class ="tabrow"><%= contribs[i]['name'] %></td>
+            <td class ="tabrow"><a href="/maps/<%= contribs[i]['id'] %>"><%= contribs[i]['name'] %></a></td>
           </tr>
         <% } %>
       </tbody>

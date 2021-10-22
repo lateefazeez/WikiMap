@@ -17,6 +17,7 @@ router.get("/", (req, res) => {
           db.getUserFavoriteMaps(user_id)
             .then((favInfo) => {
 
+
               const templateVars = {
                 userInfo: userInfo,
                 favs: favInfo,
@@ -24,7 +25,6 @@ router.get("/", (req, res) => {
                 user: idUser,
               };
 
-              console.log(favInfo);
               res.render("user-profile", templateVars);
             });
         });
