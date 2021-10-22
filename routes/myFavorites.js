@@ -15,7 +15,6 @@ router.get("/", (req, res) => {
   db.getMyFavoriteMaps(user_id)
     .then(myFavoriteMaps => {
 
-      console.log(user_id)
 
       dc.getFavoritesByUser(user_id)
       .then(favorites => {
