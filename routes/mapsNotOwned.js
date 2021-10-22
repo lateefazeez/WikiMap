@@ -14,30 +14,25 @@ router.get("/", (req, res) => {
     .then(notMyMaps=> {
 
       dc.getFavoritesByUser(user_id)
-      .then(favorites => {
+        .then(favorites => {
 
-        const final = notMyMaps.map((map) => {
-          let resutlingMap = {...map}
+          const final = notMyMaps.map((map) => {
+            let resutlingMap = {...map};
+            const foundFavorite = favorites.find((favorite) => {
+              if (map.id === favorite.map_id) {
+                return true;
+              } else {
+                return false;
+              }
+            });
+            resutlingMap.favorited = foundFavorite || null;
+            return resutlingMap;
+          });
 
-           const foundFavorite = favorites.find((favorite) => {
-
-                                if (map.id === favorite.map_id){
-                                  return true
-                                } else {
-                                  return false
-                                }
-          })
-
-
-          resutlingMap.favorited = foundFavorite || null
-
-          return resutlingMap
-        })
-
-      const templateVars = { gallerymaps: final, user: username };
-      res.render("gallerypages", templateVars);
+          const templateVars = { gallerymaps: final, user: username };
+          res.render("gallerypages", templateVars);
+        });
     })
-  })
     .catch(err => {
       res
         .status(500)

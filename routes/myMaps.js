@@ -15,10 +15,8 @@ router.get("/", (req, res) => {
 
       dc.getFavoritesByUser(user_id)
         .then(favorites => {
-
           const final = myMaps.map((map) => {
             let resutlingMap = {...map};
-
             const foundFavorite = favorites.find((favorite) => {
 
               if (map.id === favorite.map_id) {
@@ -27,10 +25,7 @@ router.get("/", (req, res) => {
                 return false;
               }
             });
-
-
             resutlingMap.favorited = foundFavorite || null;
-
             return resutlingMap;
           });
 

@@ -132,20 +132,6 @@ $(() => {
     return $row;
   };
 
-  // const updateOnDragMarker = (lat, long) => {
-  //   $.ajax({
-  //     url: "/map/pins/pin/update",
-  //     method: "POST",
-  //     data: {lat, long}
-  //   })
-  //     .then(data => {
-  //       $('.pintab').html("");
-  //       loadPins();
-  //     })
-  //     .catch(error => console.log(error));
-  // };
-
-
   $(document).on("click", ".fa-edit", function() {
     const $inputDiv = $(this).siblings("div");
     if ($inputDiv.is(":hidden")) {
@@ -179,7 +165,6 @@ $(() => {
       const $textDiv = $(this).parent("td");
       const pinId = $textDiv.attr("data-id").trim();
       const latLng = $textDiv.attr("data-latlng");
-      console.log("FROM DELETE:", latLng);
       $.ajax({
         url: "/map/pin/delete",
         method: "POST",
@@ -189,7 +174,6 @@ $(() => {
           $('.pintab').html("");
           loadPins();
           let leafletId = window.markers[pinId];
-          console.log(leafletId, pinId, window.markers);
           window.map._layers[leafletId].remove();
         })
         .catch(error => console.log(error));
@@ -258,7 +242,6 @@ $(() => {
 
       sendGeocodingRequest($address)
         .then(function(data) {
-          console.log("DATA:", data.features);
           let coordinates = data.features[0].geometry.coordinates;
           coords.push([coordinates[1], coordinates[0]]);
           let pinNameArray = data.features[0].properties.label.split(" ");
@@ -281,9 +264,7 @@ $(() => {
     let coordinates = response.features[0].geometry.coordinates; // The coordintaes are in a [<lng>, <lat>] format/
     let latLng = L.latLng([coordinates[1], coordinates[0]]);
     // map.setView(latLng, 13);
-    console.log("RESPONSE: ", response);
     let marker = L.marker(latLng, { draggable: "true" }).addTo(map);
-    console.log("MARKER", marker);
     const markerId = marker._leaflet_id;
     map.fitBounds(coords);
     marker

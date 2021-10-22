@@ -13,7 +13,6 @@ router.get("/:id", (req, res) => {
 
   db.getUserById(id)
     .then(user => {
-      console.log(user[0].name);
       req.session.username = user[0].name;
       res.redirect("/user/profile");
     })
@@ -24,7 +23,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
-console.log('hi')
+console.log('hi');
 module.exports = router;
 
 

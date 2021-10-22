@@ -19,21 +19,14 @@ router.get("/", (req, res) => {
 
           const final = allMaps.map((map) => {
             let resutlingMap = {...map};
-
-
-            //console.log(resutlingMap)
             const foundFavorite = allFavs.find((favorite) => {
-
               if (map.id === favorite.map_id) {
                 return true;
               } else {
                 return false;
               }
             });
-
-
             resutlingMap.favorited = foundFavorite || null;
-
             return resutlingMap;
           });
 

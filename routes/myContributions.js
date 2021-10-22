@@ -18,19 +18,14 @@ router.get("/", (req, res) => {
 
           const final = myContributed.map((map) => {
             let resutlingMap = {...map};
-
             const foundFavorite = favorites.find((favorite) => {
-
               if (map.id === favorite.map_id) {
                 return true;
               } else {
                 return false;
               }
             });
-
-
             resutlingMap.favorited = foundFavorite || null;
-
             return resutlingMap;
           });
           console.log(final);
