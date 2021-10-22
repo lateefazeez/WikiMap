@@ -13,17 +13,15 @@ router.get("/", (req, res) => {
   db.getMyFavoriteMaps(user_id)
     .then(myFavoriteMaps => {
 
-      console.log(myFavoriteMaps)
+      console.log(user_id)
 
       dc.getFavoritesByUser(user_id)
       .then(favorites => {
 
-        console.log(favorites)
 
         const final = myFavoriteMaps.map((map) => {
           let resutlingMap = {...map}
 
-          console.log(resutlingMap)
 
            const foundFavorite = favorites.find((favorite) => {
 
@@ -40,6 +38,7 @@ router.get("/", (req, res) => {
 
           return resutlingMap
         })
+
 
       const templateVars = { gallerymaps: final, user: username};
       res.render("gallerypages", templateVars);

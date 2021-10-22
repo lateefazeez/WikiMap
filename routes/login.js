@@ -10,6 +10,7 @@ const db = require('../lib/userQueries');
 router.get("/:id", (req, res) => {
   const id = req.params.id;
   req.session.userId = id;
+
   db.getUserById(id)
     .then(user => {
       console.log(user[0].name);

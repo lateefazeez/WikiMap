@@ -10,15 +10,18 @@ const dc = require('../lib/favoritesQueries.js');
 
 router.get("/", (req, res) => {
   const username = req.session.username;
+  const user_id = req.session.userId;
   db.getAllMaps()
     .then(allMaps => {
 
-      dc.getAllFavorites()
+      dc.getFavoritesByUser(user_id)
         .then(allFavs => {
 
           const final = allMaps.map((map) => {
             let resutlingMap = {...map};
 
+
+            //console.log(resutlingMap)
             const foundFavorite = allFavs.find((favorite) => {
 
               if (map.id === favorite.map_id) {
@@ -34,7 +37,6 @@ router.get("/", (req, res) => {
             return resutlingMap;
           });
 
-          console.log(final)
           const templateVars = { gallerymaps: final, user: username};
           res.render("gallerypages", templateVars);
 
