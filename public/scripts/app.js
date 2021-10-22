@@ -57,9 +57,6 @@ $(() => {
           // updateOnDragMarker(position.lat, position.lng);
         })
         .on('click', function(event) {
-          if (marker) {
-            marker.off("click");
-          }
           let marker = event.target;
           const markerId = marker._leaflet_id;
           let position = marker.getLatLng();
