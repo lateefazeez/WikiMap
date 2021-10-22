@@ -11,8 +11,6 @@ $(() => {
     const mapArr = URL.split("/");
     const mapId = mapArr[2];
 
-    console.log(URL, mapArr);
-
     if (theColorIs === "rgb(211, 211, 211)") {
       $(this).css("color", 'rgb(175, 32, 32)');
       $.ajax({
@@ -43,7 +41,6 @@ $(() => {
     const pin = $("#pin-list").append();
     let marker = null;
     for (const pinData of arr) {
-      console.log("PINDATA", pinData);
       if (window.markers[pinData.id]) {
         let leafletId = window.markers[pinData.id];
         window.map._layers[leafletId].remove();
