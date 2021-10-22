@@ -5,6 +5,8 @@ const express = require("express");
 const router = express.Router();
 const db = require("../lib/userqueries.js");
 
+//----------------------------------------------------------------------------------------------------
+
 router.get("/", (req, res) => {
   const user_id = req.session.userId;
   const idUser = req.session.username;

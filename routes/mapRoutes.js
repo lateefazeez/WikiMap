@@ -4,6 +4,8 @@ const db = require('../lib/mapqueries.js');
 const dc = require("../lib/pinQueries.js");
 const dd = require('../lib/favoritesQueries.js');
 
+//----------------------------------------------------------------------------------------------------
+
 router.post("/", (req, res) => {
   const name = req.body.map_name;
   const description = req.body.map_description;

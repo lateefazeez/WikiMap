@@ -1,6 +1,8 @@
 
 $(() => {
 
+  //----------------------------------------------------------------------------------------------------
+
   $(".far").on("click", function(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -26,6 +28,8 @@ $(() => {
     });
 
   });
+
+  //----------------------------------------------------------------------------------------------------
 
   window.markers = {};
 
@@ -62,6 +66,7 @@ $(() => {
     }
   });
 
+  //----------------------------------------------------------------------------------------------------
 
   let map;
   const drawPins = (arr, map) => {
@@ -94,6 +99,7 @@ $(() => {
     }
   };
 
+  //----------------------------------------------------------------------------------------------------
 
   const loadPins = () => {
     let pathname = window.location.pathname;
@@ -113,9 +119,13 @@ $(() => {
 
   loadPins();
 
+  //----------------------------------------------------------------------------------------------------
+
   const renderTable = (pins) => {
     return pins.forEach(pin => $(".pintab").prepend(createTableTableBody(pin)));
   };
+
+  //----------------------------------------------------------------------------------------------------
 
   const createTableTableBody = (pin) => {
 
@@ -132,6 +142,8 @@ $(() => {
     return $row;
   };
 
+  //----------------------------------------------------------------------------------------------------
+
   $(document).on("click", ".fa-edit", function() {
     const $inputDiv = $(this).siblings("div");
     if ($inputDiv.is(":hidden")) {
@@ -139,6 +151,8 @@ $(() => {
       $inputDiv.css("display", "flex");
     }
   });
+
+  //----------------------------------------------------------------------------------------------------
 
   $(document).on("click", ".addBtn", function() {
     const newTitle = $(this).siblings("input").val();
@@ -159,6 +173,7 @@ $(() => {
 
   });
 
+  //----------------------------------------------------------------------------------------------------
 
   const deletePin = () => {
     $(document).on("click", ".fa-trash-alt", function() {
@@ -182,11 +197,15 @@ $(() => {
 
   deletePin();
 
+  //----------------------------------------------------------------------------------------------------
+
   const getLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
     }
   };
+
+  //----------------------------------------------------------------------------------------------------
 
   const showPosition = (position) => {
     map = L.map("mapid").setView(
@@ -221,14 +240,18 @@ $(() => {
   };
   getLocation();
 
+
+  //----------------------------------------------------------------------------------------------------
+
+
   let coords = [];
   let pinName;
   let fullMarkerName;
 
-  // let locationName = "saddledome calgary";
+
   const $addresses = [];
   const showLocations = () => {
-    // drawMarker([51.1646246, -113.9384915]);
+
     $("#search-button").on("click", function() {
       const $address = $("#search-bar").val();
       if ($address === "" || $address === null) {
@@ -259,11 +282,14 @@ $(() => {
   let APPLICATION_ID = "da409bff";
   let API_KEY = "169ddfc918d7919f5aaf1778daa6a314";
 
+
+  //----------------------------------------------------------------------------------------------------
+
+
   ///sending request
   const addNewMarker = (response) => {
     let coordinates = response.features[0].geometry.coordinates; // The coordintaes are in a [<lng>, <lat>] format/
     let latLng = L.latLng([coordinates[1], coordinates[0]]);
-    // map.setView(latLng, 13);
     let marker = L.marker(latLng, { draggable: "true" }).addTo(map);
     const markerId = marker._leaflet_id;
     map.fitBounds(coords);
@@ -292,6 +318,8 @@ $(() => {
 
   };
 
+  //----------------------------------------------------------------------------------------------------
+
   // SAVE PIN
 
   const savePin = (lat, long, name, leafletId) => {
@@ -316,6 +344,8 @@ $(() => {
       .catch(error => console.log(error));
   };
 
+  //----------------------------------------------------------------------------------------------------
+
   function sendGeocodingRequest(location) {
     return fetch(
       `https://api.traveltimeapp.com/v4/geocoding/search?query=` + location,
@@ -329,6 +359,6 @@ $(() => {
           "Accept-Language": "en-US",
         },
       }
-    ).then((response) => response.json()); // parses JSON response into native Javascript objects
+    ).then((response) => response.json());
   }
 });

@@ -7,6 +7,8 @@ const router  = express.Router();
 const db = require('../lib/mapqueries.js');
 const dc = require('../lib/favoritesQueries.js');
 
+//----------------------------------------------------------------------------------------------------
+
 router.get("/", (req, res) => {
   const user_id = req.session.userId;
   const username = req.session.username;
@@ -28,7 +30,7 @@ router.get("/", (req, res) => {
             resutlingMap.favorited = foundFavorite || null;
             return resutlingMap;
           });
-          console.log(final);
+
           const templateVars = { gallerymaps: final, user: username};
           res.render("gallerypages", templateVars);
         });
