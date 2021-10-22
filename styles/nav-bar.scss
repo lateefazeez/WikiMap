@@ -4,8 +4,24 @@
   background-color: #50514f;
 }
 
+.modal-backdrop {
+  position: unset !important;
+}
+
+.sticky {
+  // position: fixed;
+  top: 0;
+  // width: 100%;
+}
+.navbar-collapse {
+  background-color: #50514f;
+}
+
 .access-buttons {
   display: flex;
+}
+.nav-link:visited {
+  color: white;
 }
 
 .btn-primary {
@@ -22,18 +38,17 @@
   background-color: #247ba0;
 }
 
-
 .navbar-brand {
   margin-top: 8px;
 }
 
 .brand {
-    margin-top: -1px;
-    font-size: 24px;
-    margin-right: 12px;
-    color: white;
+  margin-top: -1px;
+  font-size: 24px;
+  margin-right: 12px;
+  color: white;
 }
 
 .btn-danger {
-margin-top: 5px;
+  margin-top: 5px;
 }

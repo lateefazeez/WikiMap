@@ -8,7 +8,6 @@
 
 .main_container {
   padding: 2em;
-
 }
 
 .top-box {
@@ -19,7 +18,7 @@
   border-radius: 10px;
 }
 
-.mid-box{
+.mid-box {
   display: flex;
   flex-direction: row;
   font-size: x-large;
@@ -34,12 +33,11 @@ label {
 }
 
 #hrt {
- margin-top: 17px;
- margin-left: 30px;
- width: 50px;
- font-size: 33px;
+  margin-top: 17px;
+  margin-left: 30px;
+  width: 50px;
+  font-size: 33px;
 }
-
 
 #search-form {
   margin-right: 30px;
@@ -61,7 +59,7 @@ label {
 }
 
 #empty-search {
-  visibility: hidden;
+  display: none;
 }
 
 .search_input {
@@ -132,7 +130,6 @@ th:first-child {
   color: green;
   font-size: 1em;
 }
-
 
 #hort {
   height: 50px;

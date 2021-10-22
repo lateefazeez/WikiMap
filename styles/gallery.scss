@@ -84,10 +84,9 @@ img {
   font-size: 33px;
   padding-top: 8px;
   color: lightgray;
-  z-index: 1;
+  z-index: -1;
 }
 
 .fa-heart:checked {
   color: rgb(173, 28, 28);
 }
-
