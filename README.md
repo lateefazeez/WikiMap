@@ -1,6 +1,6 @@
 # WikiMap
 
-Tweeter is a user friendly clone of google my-map.
+WikiMap is a user friendly clone of google my-map.
 
 This project is a multiple AJAX-based google map clone that uses jQuery, ejs, HTML5 and plain CSS3 to render user's tweets in the front end. The back-end is written in with node and uses a postgresql for database.
 
